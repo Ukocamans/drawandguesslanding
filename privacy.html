@@ -1,0 +1,717 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - Doodle & Guess</title>
+  <meta name="description" content="Privacy Policy for Doodle & Guess iOS drawing puzzle game.">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream-top: #FDF8F3;
+      --cream-bottom: #F5EDE4;
+      --coral: #FF6B6B;
+      --orange: #FF8C42;
+      --teal: #4ECDC4;
+      --teal-dark: #3ab5ad;
+      --white: #FFFFFF;
+      --text-dark: #2D3436;
+      --text-muted: #8B8585;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream-top);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(78, 205, 196, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(255, 107, 107, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--cream-top) 0%, var(--cream-bottom) 100%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(78, 205, 196, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      z-index: -1;
+    }
+
+    h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+
+    a { color: var(--teal-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    /* Navbar */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 248, 243, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .nav-brand:hover { text-decoration: none; }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .nav-brand span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      background: rgba(78, 205, 196, 0.1);
+      color: var(--teal-dark);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: 'Nunito', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(78, 205, 196, 0.2);
+      text-decoration: none;
+    }
+
+    /* Content */
+    .page-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 110px 24px 80px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .page-header h1 .coral {
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header .subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .page-header .effective-date {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    /* Policy card */
+    .policy-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 8px 32px rgba(78, 205, 196, 0.1), 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid rgba(78, 205, 196, 0.08);
+    }
+
+    .policy-card h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(78, 205, 196, 0.15);
+      color: var(--text-dark);
+    }
+
+    .policy-card h2:first-child {
+      margin-top: 0;
+    }
+
+    .policy-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .policy-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #555;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .policy-card ul {
+      margin: 8px 0 16px 20px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .policy-card ul li {
+      margin-bottom: 4px;
+    }
+
+    .policy-card a {
+      color: var(--teal-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .policy-card a:hover {
+      color: var(--coral);
+    }
+
+    /* Language switcher */
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .lang-btn {
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid rgba(78, 205, 196, 0.2);
+      color: var(--text-muted);
+    }
+
+    .lang-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    .lang-btn.active {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+
+    .lang-btn.active:hover {
+      color: white;
+    }
+
+    /* Footer */
+    .footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(78, 205, 196, 0.1);
+      margin-top: 60px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover { color: var(--teal); text-decoration: none; }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* Policy sections hidden by default */
+    .policy-lang { display: none; }
+    .policy-lang.active { display: block; }
+
+    @media (max-width: 768px) {
+      .policy-card { padding: 32px 24px; border-radius: 20px; }
+      .page-content { padding: 100px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="app-icon.png" alt="Doodle & Guess icon">
+      <span>Doodle & Guess</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <main class="page-content">
+    <div class="page-header">
+      <h1><span class="coral">Privacy</span> Policy</h1>
+      <p class="subtitle">Doodle & Guess</p>
+      <p class="effective-date">Effective Date: March 25, 2026</p>
+    </div>
+
+    <div class="lang-switcher">
+      <a href="#" class="lang-btn active" data-lang="en">English</a>
+      <a href="#" class="lang-btn" data-lang="de">Deutsch</a>
+      <a href="#" class="lang-btn" data-lang="es">Espa&ntilde;ol</a>
+      <a href="#" class="lang-btn" data-lang="fr">Fran&ccedil;ais</a>
+      <a href="#" class="lang-btn" data-lang="tr">T&uuml;rk&ccedil;e</a>
+    </div>
+
+    <!-- ====== ENGLISH ====== -->
+    <div class="policy-card policy-lang active" id="lang-en">
+      <h2>1. Introduction</h2>
+      <p>Draw &amp; Guess ("the App") is a mobile drawing puzzle game developed for iOS. This Privacy Policy explains how we collect, use, and protect your information when you use our App. By using the App, you agree to the practices described in this policy.</p>
+
+      <h2>2. Information We Collect</h2>
+      <p>We may collect the following types of information:</p>
+
+      <h3>a) Analytics Data</h3>
+      <p>We collect anonymous usage data to improve the App experience, including:</p>
+      <ul>
+        <li>Device type and operating system version</li>
+        <li>App usage patterns (screens visited, features used, session duration)</li>
+        <li>Crash reports and performance data</li>
+        <li>General geographic region (country/city level, not precise location)</li>
+      </ul>
+
+      <h3>b) Advertising Data</h3>
+      <p>Our App displays advertisements provided by third-party ad networks. These networks may collect:</p>
+      <ul>
+        <li>Advertising identifier (IDFA, subject to your consent via App Tracking Transparency)</li>
+        <li>Device information and IP address</li>
+        <li>Ad interaction data (views, clicks)</li>
+      </ul>
+
+      <h3>c) Locally Stored Data</h3>
+      <p>Game progress, settings, and preferences are stored locally on your device using UserDefaults. This data is not transmitted to any server.</p>
+
+      <h2>3. How We Use Your Information</h2>
+      <p>We use the collected information to:</p>
+      <ul>
+        <li>Analyze app performance and improve user experience</li>
+        <li>Display relevant advertisements</li>
+        <li>Fix bugs and improve app stability</li>
+        <li>Understand general usage trends</li>
+      </ul>
+
+      <h2>4. Third-Party Services</h2>
+      <p>The App integrates the following third-party services that may collect data:</p>
+      <p><strong>Google AdMob:</strong> For displaying advertisements. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google's privacy policy</a></p>
+      <p><strong>Firebase Analytics:</strong> For anonymous usage analytics. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase privacy</a></p>
+      <p>These third parties have their own privacy policies governing data they collect.</p>
+
+      <h2>5. Advertising &amp; App Tracking Transparency</h2>
+      <p>On iOS 14.5 and later, we request your permission via Apple's App Tracking Transparency (ATT) framework before collecting your advertising identifier (IDFA). You may deny this request, and the App will continue to function normally. You can change this setting at any time in your device's Settings &gt; Privacy &gt; Tracking.</p>
+
+      <h2>6. Children's Privacy</h2>
+      <p>The App is not directed at children under 13. We do not knowingly collect personal information from children under 13. If you believe a child has provided us with personal information, please contact us at <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a> and we will delete it promptly.</p>
+
+      <h2>7. Data Retention</h2>
+      <p>Analytics data is retained in aggregated, anonymized form. We do not store personally identifiable information on our servers. Local game data remains on your device until you delete the App.</p>
+
+      <h2>8. Data Security</h2>
+      <p>We take reasonable measures to protect the information collected through the App. However, no method of electronic transmission or storage is 100% secure.</p>
+
+      <h2>9. Your Rights</h2>
+      <p>Depending on your jurisdiction, you may have the right to:</p>
+      <ul>
+        <li>Access the data collected about you</li>
+        <li>Request deletion of your data</li>
+        <li>Opt out of personalized advertising</li>
+        <li>Withdraw consent for tracking</li>
+      </ul>
+      <p>To exercise these rights, contact us at <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a>.</p>
+
+      <h2>10. Changes to This Policy</h2>
+      <p>We may update this Privacy Policy from time to time. Changes will be posted within the App and the effective date will be updated. Continued use of the App after changes constitutes acceptance of the updated policy.</p>
+
+      <h2>11. Contact Us</h2>
+      <p>If you have questions about this Privacy Policy, please contact us at: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== GERMAN ====== -->
+    <div class="policy-card policy-lang" id="lang-de">
+      <h2>1. Einleitung</h2>
+      <p>Draw &amp; Guess (&bdquo;die App&ldquo;) ist ein mobiles Zeichen-Puzzle-Spiel, entwickelt f&uuml;r iOS. Diese Datenschutzerkl&auml;rung erl&auml;utert, wie wir Ihre Daten erfassen, verwenden und sch&uuml;tzen, wenn Sie unsere App nutzen. Durch die Nutzung der App stimmen Sie den in dieser Richtlinie beschriebenen Praktiken zu.</p>
+
+      <h2>2. Welche Daten wir erfassen</h2>
+      <p>Wir k&ouml;nnen folgende Arten von Informationen erfassen:</p>
+
+      <h3>a) Analysedaten</h3>
+      <p>Wir erfassen anonyme Nutzungsdaten zur Verbesserung der App-Erfahrung, darunter:</p>
+      <ul>
+        <li>Ger&auml;tetyp und Betriebssystemversion</li>
+        <li>App-Nutzungsmuster (besuchte Bildschirme, genutzte Funktionen, Sitzungsdauer)</li>
+        <li>Absturzberichte und Leistungsdaten</li>
+        <li>Allgemeine geografische Region (Land/Stadt, keine genaue Position)</li>
+      </ul>
+
+      <h3>b) Werbedaten</h3>
+      <p>Unsere App zeigt Werbung von Drittanbieter-Werbenetzwerken an. Diese Netzwerke k&ouml;nnen erfassen:</p>
+      <ul>
+        <li>Werbe-Identifikator (IDFA, vorbehaltlich Ihrer Zustimmung &uuml;ber App Tracking Transparency)</li>
+        <li>Ger&auml;teinformationen und IP-Adresse</li>
+        <li>Werbeinteraktionsdaten (Aufrufe, Klicks)</li>
+      </ul>
+
+      <h3>c) Lokal gespeicherte Daten</h3>
+      <p>Spielfortschritt, Einstellungen und Pr&auml;ferenzen werden lokal auf Ihrem Ger&auml;t mittels UserDefaults gespeichert. Diese Daten werden nicht an Server &uuml;bertragen.</p>
+
+      <h2>3. Wie wir Ihre Daten verwenden</h2>
+      <p>Wir verwenden die erfassten Informationen, um:</p>
+      <ul>
+        <li>Die App-Leistung zu analysieren und die Benutzererfahrung zu verbessern</li>
+        <li>Relevante Werbung anzuzeigen</li>
+        <li>Fehler zu beheben und die App-Stabilit&auml;t zu verbessern</li>
+        <li>Allgemeine Nutzungstrends zu verstehen</li>
+      </ul>
+
+      <h2>4. Drittanbieter-Dienste</h2>
+      <p>Die App integriert folgende Drittanbieter-Dienste, die Daten erfassen k&ouml;nnen:</p>
+      <p><strong>Google AdMob:</strong> F&uuml;r die Anzeige von Werbung. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Datenschutzrichtlinie von Google</a></p>
+      <p><strong>Firebase Analytics:</strong> F&uuml;r anonyme Nutzungsanalysen. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase Datenschutz</a></p>
+      <p>Diese Drittanbieter haben eigene Datenschutzrichtlinien f&uuml;r die von ihnen erfassten Daten.</p>
+
+      <h2>5. Werbung &amp; App Tracking Transparency</h2>
+      <p>Ab iOS 14.5 bitten wir &uuml;ber Apples App Tracking Transparency (ATT) Framework um Ihre Erlaubnis, bevor wir Ihren Werbe-Identifikator (IDFA) erfassen. Sie k&ouml;nnen diese Anfrage ablehnen, und die App funktioniert weiterhin normal. Sie k&ouml;nnen diese Einstellung jederzeit unter Einstellungen &gt; Datenschutz &gt; Tracking &auml;ndern.</p>
+
+      <h2>6. Datenschutz f&uuml;r Kinder</h2>
+      <p>Die App richtet sich nicht an Kinder unter 13 Jahren. Wir erfassen wissentlich keine personenbezogenen Daten von Kindern unter 13 Jahren. Wenn Sie glauben, dass ein Kind uns personenbezogene Daten zur Verf&uuml;gung gestellt hat, kontaktieren Sie uns bitte unter <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a>, und wir werden diese umgehend l&ouml;schen.</p>
+
+      <h2>7. Datenspeicherung</h2>
+      <p>Analysedaten werden in aggregierter, anonymisierter Form aufbewahrt. Wir speichern keine personenbezogenen Daten auf unseren Servern. Lokale Spieldaten verbleiben auf Ihrem Ger&auml;t, bis Sie die App l&ouml;schen.</p>
+
+      <h2>8. Datensicherheit</h2>
+      <p>Wir ergreifen angemessene Ma&szlig;nahmen zum Schutz der &uuml;ber die App erfassten Informationen. Keine Methode der elektronischen &Uuml;bertragung oder Speicherung ist jedoch 100% sicher.</p>
+
+      <h2>9. Ihre Rechte</h2>
+      <p>Je nach Ihrem Rechtsgebiet haben Sie m&ouml;glicherweise das Recht auf:</p>
+      <ul>
+        <li>Zugang zu den &uuml;ber Sie erfassten Daten</li>
+        <li>L&ouml;schung Ihrer Daten</li>
+        <li>Widerspruch gegen personalisierte Werbung</li>
+        <li>Widerruf der Tracking-Zustimmung</li>
+      </ul>
+      <p>Um diese Rechte auszu&uuml;ben, kontaktieren Sie uns unter <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a>.</p>
+
+      <h2>10. &Auml;nderungen dieser Richtlinie</h2>
+      <p>Wir k&ouml;nnen diese Datenschutzerkl&auml;rung von Zeit zu Zeit aktualisieren. &Auml;nderungen werden in der App ver&ouml;ffentlicht und das G&uuml;ltigkeitsdatum wird aktualisiert. Die weitere Nutzung der App nach &Auml;nderungen gilt als Zustimmung zur aktualisierten Richtlinie.</p>
+
+      <h2>11. Kontakt</h2>
+      <p>Wenn Sie Fragen zu dieser Datenschutzerkl&auml;rung haben, kontaktieren Sie uns bitte unter: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== SPANISH ====== -->
+    <div class="policy-card policy-lang" id="lang-es">
+      <h2>1. Introducci&oacute;n</h2>
+      <p>Draw &amp; Guess (&ldquo;la Aplicaci&oacute;n&rdquo;) es un juego m&oacute;vil de rompecabezas de dibujo desarrollado para iOS. Esta Pol&iacute;tica de Privacidad explica c&oacute;mo recopilamos, usamos y protegemos su informaci&oacute;n cuando utiliza nuestra Aplicaci&oacute;n. Al usar la Aplicaci&oacute;n, acepta las pr&aacute;cticas descritas en esta pol&iacute;tica.</p>
+
+      <h2>2. Informaci&oacute;n que recopilamos</h2>
+      <p>Podemos recopilar los siguientes tipos de informaci&oacute;n:</p>
+
+      <h3>a) Datos de an&aacute;lisis</h3>
+      <p>Recopilamos datos de uso an&oacute;nimos para mejorar la experiencia de la Aplicaci&oacute;n, incluyendo:</p>
+      <ul>
+        <li>Tipo de dispositivo y versi&oacute;n del sistema operativo</li>
+        <li>Patrones de uso de la aplicaci&oacute;n (pantallas visitadas, funciones utilizadas, duraci&oacute;n de la sesi&oacute;n)</li>
+        <li>Informes de fallos y datos de rendimiento</li>
+        <li>Regi&oacute;n geogr&aacute;fica general (nivel de pa&iacute;s/ciudad, no ubicaci&oacute;n precisa)</li>
+      </ul>
+
+      <h3>b) Datos publicitarios</h3>
+      <p>Nuestra Aplicaci&oacute;n muestra anuncios proporcionados por redes publicitarias de terceros. Estas redes pueden recopilar:</p>
+      <ul>
+        <li>Identificador publicitario (IDFA, sujeto a su consentimiento a trav&eacute;s de App Tracking Transparency)</li>
+        <li>Informaci&oacute;n del dispositivo y direcci&oacute;n IP</li>
+        <li>Datos de interacci&oacute;n publicitaria (visualizaciones, clics)</li>
+      </ul>
+
+      <h3>c) Datos almacenados localmente</h3>
+      <p>El progreso del juego, la configuraci&oacute;n y las preferencias se almacenan localmente en su dispositivo mediante UserDefaults. Estos datos no se transmiten a ning&uacute;n servidor.</p>
+
+      <h2>3. C&oacute;mo usamos su informaci&oacute;n</h2>
+      <p>Utilizamos la informaci&oacute;n recopilada para:</p>
+      <ul>
+        <li>Analizar el rendimiento de la aplicaci&oacute;n y mejorar la experiencia del usuario</li>
+        <li>Mostrar anuncios relevantes</li>
+        <li>Corregir errores y mejorar la estabilidad de la aplicaci&oacute;n</li>
+        <li>Comprender las tendencias generales de uso</li>
+      </ul>
+
+      <h2>4. Servicios de terceros</h2>
+      <p>La Aplicaci&oacute;n integra los siguientes servicios de terceros que pueden recopilar datos:</p>
+      <p><strong>Google AdMob:</strong> Para mostrar anuncios. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Pol&iacute;tica de privacidad de Google</a></p>
+      <p><strong>Firebase Analytics:</strong> Para an&aacute;lisis de uso an&oacute;nimo. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Privacidad de Firebase</a></p>
+      <p>Estos terceros tienen sus propias pol&iacute;ticas de privacidad que rigen los datos que recopilan.</p>
+
+      <h2>5. Publicidad y App Tracking Transparency</h2>
+      <p>En iOS 14.5 y versiones posteriores, solicitamos su permiso a trav&eacute;s del marco App Tracking Transparency (ATT) de Apple antes de recopilar su identificador publicitario (IDFA). Puede denegar esta solicitud y la Aplicaci&oacute;n seguir&aacute; funcionando normalmente. Puede cambiar esta configuraci&oacute;n en cualquier momento en Ajustes &gt; Privacidad &gt; Seguimiento.</p>
+
+      <h2>6. Privacidad infantil</h2>
+      <p>La Aplicaci&oacute;n no est&aacute; dirigida a menores de 13 a&ntilde;os. No recopilamos conscientemente informaci&oacute;n personal de menores de 13 a&ntilde;os. Si cree que un menor nos ha proporcionado informaci&oacute;n personal, cont&aacute;ctenos en <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a> y la eliminaremos de inmediato.</p>
+
+      <h2>7. Retenci&oacute;n de datos</h2>
+      <p>Los datos de an&aacute;lisis se conservan de forma agregada y anonimizada. No almacenamos informaci&oacute;n de identificaci&oacute;n personal en nuestros servidores. Los datos locales del juego permanecen en su dispositivo hasta que elimine la Aplicaci&oacute;n.</p>
+
+      <h2>8. Seguridad de datos</h2>
+      <p>Tomamos medidas razonables para proteger la informaci&oacute;n recopilada a trav&eacute;s de la Aplicaci&oacute;n. Sin embargo, ning&uacute;n m&eacute;todo de transmisi&oacute;n electr&oacute;nica o almacenamiento es 100% seguro.</p>
+
+      <h2>9. Sus derechos</h2>
+      <p>Dependiendo de su jurisdicci&oacute;n, puede tener derecho a:</p>
+      <ul>
+        <li>Acceder a los datos recopilados sobre usted</li>
+        <li>Solicitar la eliminaci&oacute;n de sus datos</li>
+        <li>Optar por no recibir publicidad personalizada</li>
+        <li>Retirar el consentimiento para el seguimiento</li>
+      </ul>
+      <p>Para ejercer estos derechos, cont&aacute;ctenos en <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a>.</p>
+
+      <h2>10. Cambios en esta pol&iacute;tica</h2>
+      <p>Podemos actualizar esta Pol&iacute;tica de Privacidad de vez en cuando. Los cambios se publicar&aacute;n dentro de la Aplicaci&oacute;n y se actualizar&aacute; la fecha de vigencia. El uso continuado de la Aplicaci&oacute;n despu&eacute;s de los cambios constituye la aceptaci&oacute;n de la pol&iacute;tica actualizada.</p>
+
+      <h2>11. Cont&aacute;ctenos</h2>
+      <p>Si tiene preguntas sobre esta Pol&iacute;tica de Privacidad, cont&aacute;ctenos en: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== FRENCH ====== -->
+    <div class="policy-card policy-lang" id="lang-fr">
+      <h2>1. Introduction</h2>
+      <p>Draw &amp; Guess (&laquo; l'Application &raquo;) est un jeu mobile de puzzle de dessin d&eacute;velopp&eacute; pour iOS. Cette Politique de Confidentialit&eacute; explique comment nous collectons, utilisons et prot&eacute;geons vos informations lorsque vous utilisez notre Application. En utilisant l'Application, vous acceptez les pratiques d&eacute;crites dans cette politique.</p>
+
+      <h2>2. Informations que nous collectons</h2>
+      <p>Nous pouvons collecter les types d'informations suivants :</p>
+
+      <h3>a) Donn&eacute;es analytiques</h3>
+      <p>Nous collectons des donn&eacute;es d'utilisation anonymes pour am&eacute;liorer l'exp&eacute;rience de l'Application, notamment :</p>
+      <ul>
+        <li>Type d'appareil et version du syst&egrave;me d'exploitation</li>
+        <li>Habitudes d'utilisation de l'application (&eacute;crans visit&eacute;s, fonctionnalit&eacute;s utilis&eacute;es, dur&eacute;e de session)</li>
+        <li>Rapports de plantage et donn&eacute;es de performance</li>
+        <li>R&eacute;gion g&eacute;ographique g&eacute;n&eacute;rale (niveau pays/ville, pas de localisation pr&eacute;cise)</li>
+      </ul>
+
+      <h3>b) Donn&eacute;es publicitaires</h3>
+      <p>Notre Application affiche des publicit&eacute;s fournies par des r&eacute;seaux publicitaires tiers. Ces r&eacute;seaux peuvent collecter :</p>
+      <ul>
+        <li>Identifiant publicitaire (IDFA, sous r&eacute;serve de votre consentement via App Tracking Transparency)</li>
+        <li>Informations sur l'appareil et adresse IP</li>
+        <li>Donn&eacute;es d'interaction publicitaire (vues, clics)</li>
+      </ul>
+
+      <h3>c) Donn&eacute;es stock&eacute;es localement</h3>
+      <p>La progression du jeu, les param&egrave;tres et les pr&eacute;f&eacute;rences sont stock&eacute;s localement sur votre appareil via UserDefaults. Ces donn&eacute;es ne sont transmises &agrave; aucun serveur.</p>
+
+      <h2>3. Comment nous utilisons vos informations</h2>
+      <p>Nous utilisons les informations collect&eacute;es pour :</p>
+      <ul>
+        <li>Analyser les performances de l'application et am&eacute;liorer l'exp&eacute;rience utilisateur</li>
+        <li>Afficher des publicit&eacute;s pertinentes</li>
+        <li>Corriger les bugs et am&eacute;liorer la stabilit&eacute; de l'application</li>
+        <li>Comprendre les tendances g&eacute;n&eacute;rales d'utilisation</li>
+      </ul>
+
+      <h2>4. Services tiers</h2>
+      <p>L'Application int&egrave;gre les services tiers suivants susceptibles de collecter des donn&eacute;es :</p>
+      <p><strong>Google AdMob :</strong> Pour l'affichage de publicit&eacute;s. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Politique de confidentialit&eacute; de Google</a></p>
+      <p><strong>Firebase Analytics :</strong> Pour des analyses d'utilisation anonymes. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Confidentialit&eacute; Firebase</a></p>
+      <p>Ces tiers ont leurs propres politiques de confidentialit&eacute; r&eacute;gissant les donn&eacute;es qu'ils collectent.</p>
+
+      <h2>5. Publicit&eacute; et App Tracking Transparency</h2>
+      <p>Sur iOS 14.5 et versions ult&eacute;rieures, nous demandons votre autorisation via le framework App Tracking Transparency (ATT) d'Apple avant de collecter votre identifiant publicitaire (IDFA). Vous pouvez refuser cette demande et l'Application continuera de fonctionner normalement. Vous pouvez modifier ce param&egrave;tre &agrave; tout moment dans R&eacute;glages &gt; Confidentialit&eacute; &gt; Suivi.</p>
+
+      <h2>6. Confidentialit&eacute; des enfants</h2>
+      <p>L'Application ne s'adresse pas aux enfants de moins de 13 ans. Nous ne collectons pas sciemment d'informations personnelles aupr&egrave;s d'enfants de moins de 13 ans. Si vous pensez qu'un enfant nous a fourni des informations personnelles, veuillez nous contacter &agrave; <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a> et nous les supprimerons rapidement.</p>
+
+      <h2>7. Conservation des donn&eacute;es</h2>
+      <p>Les donn&eacute;es analytiques sont conserv&eacute;es sous forme agr&eacute;g&eacute;e et anonymis&eacute;e. Nous ne stockons pas d'informations personnellement identifiables sur nos serveurs. Les donn&eacute;es locales du jeu restent sur votre appareil jusqu'&agrave; ce que vous supprimiez l'Application.</p>
+
+      <h2>8. S&eacute;curit&eacute; des donn&eacute;es</h2>
+      <p>Nous prenons des mesures raisonnables pour prot&eacute;ger les informations collect&eacute;es via l'Application. Cependant, aucune m&eacute;thode de transmission &eacute;lectronique ou de stockage n'est s&ucirc;re &agrave; 100%.</p>
+
+      <h2>9. Vos droits</h2>
+      <p>Selon votre juridiction, vous pouvez avoir le droit de :</p>
+      <ul>
+        <li>Acc&eacute;der aux donn&eacute;es collect&eacute;es vous concernant</li>
+        <li>Demander la suppression de vos donn&eacute;es</li>
+        <li>Refuser la publicit&eacute; personnalis&eacute;e</li>
+        <li>Retirer votre consentement au suivi</li>
+      </ul>
+      <p>Pour exercer ces droits, contactez-nous &agrave; <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a>.</p>
+
+      <h2>10. Modifications de cette politique</h2>
+      <p>Nous pouvons mettre &agrave; jour cette Politique de Confidentialit&eacute; de temps en temps. Les modifications seront publi&eacute;es dans l'Application et la date d'entr&eacute;e en vigueur sera mise &agrave; jour. L'utilisation continue de l'Application apr&egrave;s les modifications constitue l'acceptation de la politique mise &agrave; jour.</p>
+
+      <h2>11. Nous contacter</h2>
+      <p>Si vous avez des questions concernant cette Politique de Confidentialit&eacute;, veuillez nous contacter &agrave; : <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== TURKISH ====== -->
+    <div class="policy-card policy-lang" id="lang-tr">
+      <h2>1. Giri&#351;</h2>
+      <p>Draw &amp; Guess (&ldquo;Uygulama&rdquo;), iOS i&ccedil;in geli&#351;tirilmi&#351; bir mobil &ccedil;izim bulmaca oyunudur. Bu Gizlilik Politikas&#305;, Uygulamamizi kulland&#305;&#287;&#305;n&#305;zda bilgilerinizi nas&#305;l toplad&#305;&#287;&#305;m&#305;z&#305;, kulland&#305;&#287;&#305;m&#305;z&#305; ve korudu&#287;umuzu a&ccedil;&#305;klar. Uygulamay&#305; kullanarak bu politikada a&ccedil;&#305;klanan uygulamalar&#305; kabul etmi&#351; olursunuz.</p>
+
+      <h2>2. Toplad&#305;&#287;&#305;m&#305;z Bilgiler</h2>
+      <p>A&#351;a&#287;&#305;daki t&uuml;rlerde bilgi toplayabiliriz:</p>
+
+      <h3>a) Analiz Verileri</h3>
+      <p>Uygulama deneyimini iyile&#351;tirmek i&ccedil;in anonim kullan&#305;m verileri topluyoruz:</p>
+      <ul>
+        <li>Cihaz t&uuml;r&uuml; ve i&#351;letim sistemi s&uuml;r&uuml;m&uuml;</li>
+        <li>Uygulama kullan&#305;m kal&#305;plar&#305; (ziyaret edilen ekranlar, kullan&#305;lan &ouml;zellikler, oturum s&uuml;resi)</li>
+        <li>&Ccedil;&ouml;kme raporlar&#305; ve performans verileri</li>
+        <li>Genel co&#287;rafi b&ouml;lge (&uuml;lke/&#351;ehir d&uuml;zeyi, kesin konum de&#287;il)</li>
+      </ul>
+
+      <h3>b) Reklam Verileri</h3>
+      <p>Uygulamamiz &uuml;&ccedil;&uuml;nc&uuml; taraf reklam a&#287;lar&#305; taraf&#305;ndan sa&#287;lanan reklamlar g&ouml;sterir. Bu a&#287;lar &#351;unlar&#305; toplayabilir:</p>
+      <ul>
+        <li>Reklam tan&#305;mlay&#305;c&#305;s&#305; (IDFA, App Tracking Transparency arac&#305;l&#305;&#287;&#305;yla onay&#305;n&#305;za ba&#287;l&#305;)</li>
+        <li>Cihaz bilgileri ve IP adresi</li>
+        <li>Reklam etkile&#351;im verileri (g&ouml;r&uuml;nt&uuml;lemeler, t&#305;klamalar)</li>
+      </ul>
+
+      <h3>c) Yerel Olarak Saklanan Veriler</h3>
+      <p>Oyun ilerlemesi, ayarlar ve tercihler UserDefaults kullanilarak cihaz&#305;n&#305;zda yerel olarak saklan&#305;r. Bu veriler hi&ccedil;bir sunucuya iletilmez.</p>
+
+      <h2>3. Bilgilerinizi Nas&#305;l Kullan&#305;yoruz</h2>
+      <p>Toplanan bilgileri &#351;u ama&ccedil;larla kullan&#305;yoruz:</p>
+      <ul>
+        <li>Uygulama performans&#305;n&#305; analiz etmek ve kullan&#305;c&#305; deneyimini iyile&#351;tirmek</li>
+        <li>&#304;lgili reklamlar g&ouml;stermek</li>
+        <li>Hatalar&#305; d&uuml;zeltmek ve uygulama kararl&#305;l&#305;&#287;&#305;n&#305; art&#305;rmak</li>
+        <li>Genel kullan&#305;m e&#287;ilimlerini anlamak</li>
+      </ul>
+
+      <h2>4. &Uuml;&ccedil;&uuml;nc&uuml; Taraf Hizmetleri</h2>
+      <p>Uygulama, veri toplayabilecek a&#351;a&#287;&#305;daki &uuml;&ccedil;&uuml;nc&uuml; taraf hizmetlerini entegre eder:</p>
+      <p><strong>Google AdMob:</strong> Reklam g&ouml;sterimi i&ccedil;in. <a href="https://policies.google.com/privacy" target="_blank" rel="noopener">Google gizlilik politikas&#305;</a></p>
+      <p><strong>Firebase Analytics:</strong> Anonim kullan&#305;m analizleri i&ccedil;in. <a href="https://firebase.google.com/support/privacy" target="_blank" rel="noopener">Firebase gizlili&#287;i</a></p>
+      <p>Bu &uuml;&ccedil;&uuml;nc&uuml; taraflar&#305;n toplad&#305;klar&#305; verileri y&ouml;neten kendi gizlilik politikalar&#305; vard&#305;r.</p>
+
+      <h2>5. Reklamc&#305;l&#305;k ve App Tracking Transparency</h2>
+      <p>iOS 14.5 ve sonras&#305;nda, reklam tan&#305;mlay&#305;c&#305;n&#305;z&#305; (IDFA) toplamadan &ouml;nce Apple'&#305;n App Tracking Transparency (ATT) &ccedil;er&ccedil;evesi arac&#305;l&#305;&#287;&#305;yla izninizi istiyoruz. Bu iste&#287;i reddedebilirsiniz ve Uygulama normal &#351;ekilde &ccedil;al&#305;&#351;maya devam edecektir. Bu ayar&#305; istediginiz zaman Ayarlar &gt; Gizlilik &gt; &#304;zleme b&ouml;l&uuml;m&uuml;nden de&#287;i&#351;tirebilirsiniz.</p>
+
+      <h2>6. &Ccedil;ocuklar&#305;n Gizlili&#287;i</h2>
+      <p>Uygulama 13 ya&#351;&#305;n alt&#305;ndaki &ccedil;ocuklara y&ouml;nelik de&#287;ildir. 13 ya&#351;&#305;n alt&#305;ndaki &ccedil;ocuklardan bilerek ki&#351;isel bilgi toplamay&#305;z. Bir &ccedil;ocu&#287;un bize ki&#351;isel bilgi sa&#287;lad&#305;&#287;&#305;na inan&#305;yorsan&#305;z, l&uuml;tfen <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a> adresinden bize ula&#351;&#305;n, derhal silece&#287;iz.</p>
+
+      <h2>7. Veri Saklama</h2>
+      <p>Analiz verileri toplu ve anonim bi&ccedil;imde saklan&#305;r. Sunucular&#305;m&#305;zda ki&#351;isel olarak tan&#305;mlanabilir bilgi saklamay&#305;z. Yerel oyun verileri, Uygulamay&#305; silene kadar cihaz&#305;n&#305;zda kal&#305;r.</p>
+
+      <h2>8. Veri G&uuml;venli&#287;i</h2>
+      <p>Uygulama arac&#305;l&#305;&#287;&#305;yla toplanan bilgileri korumak i&ccedil;in makul &ouml;nlemler al&#305;yoruz. Ancak hi&ccedil;bir elektronik iletim veya saklama y&ouml;ntemi %100 g&uuml;venli de&#287;ildir.</p>
+
+      <h2>9. Haklar&#305;n&#305;z</h2>
+      <p>Yarg&#305; alan&#305;n&#305;za ba&#287;l&#305; olarak a&#351;a&#287;&#305;daki haklara sahip olabilirsiniz:</p>
+      <ul>
+        <li>Hakk&#305;n&#305;zda toplanan verilere eri&#351;im</li>
+        <li>Verilerinizin silinmesini talep etme</li>
+        <li>Ki&#351;iselle&#351;tirilmi&#351; reklamc&#305;l&#305;ktan &ccedil;&#305;kma</li>
+        <li>&#304;zleme onay&#305;n&#305; geri &ccedil;ekme</li>
+      </ul>
+      <p>Bu haklar&#305; kullanmak i&ccedil;in <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a> adresinden bize ula&#351;&#305;n.</p>
+
+      <h2>10. Bu Politikadaki De&#287;i&#351;iklikler</h2>
+      <p>Bu Gizlilik Politikas&#305;n&#305; zaman zaman g&uuml;ncelleyebiliriz. De&#287;i&#351;iklikler Uygulama i&ccedil;inde yay&#305;nlanacak ve y&uuml;r&uuml;rl&uuml;k tarihi g&uuml;ncellenecektir. De&#287;i&#351;ikliklerden sonra Uygulamay&#305; kullanmaya devam etmeniz, g&uuml;ncellenen politikay&#305; kabul etti&#287;iniz anlam&#305;na gelir.</p>
+
+      <h2>11. Bize Ula&#351;&#305;n</h2>
+      <p>Bu Gizlilik Politikas&#305; hakk&#305;nda sorular&#305;n&#305;z varsa, l&uuml;tfen bize ula&#351;&#305;n: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:support@doodleandguess.com">Support</a>
+    </div>
+    <p class="footer-copy">&copy; 2025 Doodle &amp; Guess. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Language switcher
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = btn.dataset.lang;
+
+        // Update active button
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+
+        // Show selected language
+        document.querySelectorAll('.policy-lang').forEach(p => p.classList.remove('active'));
+        document.getElementById('lang-' + lang).classList.add('active');
+
+        // Scroll to top of policy
+        document.querySelector('.policy-card.active').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>

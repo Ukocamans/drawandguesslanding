@@ -1,0 +1,1000 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Doodle & Guess - Draw. Guess. Have Fun!</title>
+  <meta name="description" content="A fun drawing puzzle game where you follow step-by-step instructions to draw objects and guess what you're creating. Available on iOS.">
+  <meta property="og:title" content="Doodle & Guess - Draw. Guess. Have Fun!">
+  <meta property="og:description" content="A fun drawing puzzle game for iOS. Draw step-by-step, guess the word, earn stars!">
+  <meta property="og:image" content="screenshots/menu.png">
+  <meta name="theme-color" content="#4ECDC4">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* ========== RESET & BASE ========== */
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream-top: #FDF8F3;
+      --cream-bottom: #F5EDE4;
+      --coral: #FF6B6B;
+      --orange: #FF8C42;
+      --teal: #4ECDC4;
+      --teal-light: #a8e6e0;
+      --teal-dark: #3ab5ad;
+      --white: #FFFFFF;
+      --card-shadow: 0 8px 32px rgba(78, 205, 196, 0.1), 0 2px 8px rgba(0,0,0,0.04);
+      --text-dark: #2D3436;
+      --text-muted: #8B8585;
+      --star-gold: #FFD93D;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream-top);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+    }
+
+    /* ========== BACKGROUND TEXTURE ========== */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(78, 205, 196, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(255, 107, 107, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--cream-top) 0%, var(--cream-bottom) 100%);
+      z-index: -2;
+    }
+
+    /* Subtle dot grid pattern */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(78, 205, 196, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      z-index: -1;
+    }
+
+    /* ========== DOODLE DECORATIONS (SVG pencil lines) ========== */
+    .doodle-line {
+      position: absolute;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    /* ========== TYPOGRAPHY ========== */
+    h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+
+    /* ========== NAVBAR ========== */
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 248, 243, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .nav-brand span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .nav-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: 'Nunito', sans-serif;
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .nav-download:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 16px rgba(255, 107, 107, 0.35);
+    }
+
+    /* ========== HERO ========== */
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 24px 80px;
+      position: relative;
+    }
+
+    /* Floating doodle elements around hero */
+    .hero-doodle {
+      position: absolute;
+      opacity: 0;
+      animation: floatIn 1s ease forwards;
+    }
+
+    .hero-doodle svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .doodle-star {
+      top: 15%; left: 8%;
+      width: 48px; height: 48px;
+      animation-delay: 0.8s;
+    }
+
+    .doodle-circle {
+      top: 20%; right: 10%;
+      width: 36px; height: 36px;
+      animation-delay: 1s;
+    }
+
+    .doodle-zigzag {
+      bottom: 25%; left: 5%;
+      width: 60px; height: 30px;
+      animation-delay: 1.2s;
+    }
+
+    .doodle-spiral {
+      bottom: 30%; right: 8%;
+      width: 44px; height: 44px;
+      animation-delay: 1.4s;
+    }
+
+    @keyframes floatIn {
+      0% { opacity: 0; transform: scale(0.5) rotate(-20deg); }
+      100% { opacity: 0.6; transform: scale(1) rotate(0deg); }
+    }
+
+    @keyframes gentleFloat {
+      0%, 100% { transform: translateY(0px) rotate(0deg); }
+      50% { transform: translateY(-8px) rotate(3deg); }
+    }
+
+    .hero-doodle.visible {
+      animation: floatIn 0.8s ease forwards, gentleFloat 4s ease-in-out infinite;
+    }
+
+    .app-icon-wrapper {
+      position: relative;
+      margin-bottom: 32px;
+      animation: iconEntry 1s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+      opacity: 0;
+    }
+
+    @keyframes iconEntry {
+      0% { opacity: 0; transform: scale(0.3) rotate(-10deg); }
+      100% { opacity: 1; transform: scale(1) rotate(0deg); }
+    }
+
+    .app-icon {
+      width: 140px;
+      height: 140px;
+      border-radius: 32px;
+      box-shadow:
+        0 20px 60px rgba(78, 205, 196, 0.25),
+        0 8px 24px rgba(0,0,0,0.08);
+      transition: transform 0.3s ease;
+    }
+
+    .app-icon:hover {
+      transform: scale(1.05) rotate(2deg);
+    }
+
+    /* Glow ring behind icon */
+    .app-icon-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: -16px;
+      border-radius: 44px;
+      background: radial-gradient(circle, rgba(78, 205, 196, 0.15) 0%, transparent 70%);
+      animation: pulseGlow 3s ease-in-out infinite;
+    }
+
+    @keyframes pulseGlow {
+      0%, 100% { transform: scale(1); opacity: 0.6; }
+      50% { transform: scale(1.1); opacity: 1; }
+    }
+
+    .hero-title {
+      font-size: clamp(2.5rem, 7vw, 4.5rem);
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 16px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.3s forwards;
+    }
+
+    .hero-title .coral {
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .hero-title .teal {
+      color: var(--teal);
+    }
+
+    .hero-tagline {
+      font-size: clamp(1.1rem, 3vw, 1.5rem);
+      color: var(--text-muted);
+      font-weight: 600;
+      margin-bottom: 40px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.5s forwards;
+    }
+
+    @keyframes slideUp {
+      0% { opacity: 0; transform: translateY(24px); }
+      100% { opacity: 1; transform: translateY(0); }
+    }
+
+    .hero-cta {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      opacity: 0;
+      animation: slideUp 0.8s ease 0.7s forwards;
+    }
+
+    .app-store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 12px;
+      padding: 16px 36px;
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      color: white;
+      text-decoration: none;
+      border-radius: 60px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.15rem;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+    }
+
+    .app-store-btn:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(255, 107, 107, 0.4);
+    }
+
+    .app-store-btn:active {
+      transform: translateY(0) scale(0.98);
+    }
+
+    .app-store-btn svg {
+      width: 24px;
+      height: 24px;
+      fill: white;
+    }
+
+    .hero-subtitle {
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========== SCREENSHOTS ========== */
+    .screenshots {
+      padding: 60px 0 100px;
+      position: relative;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 48px;
+      padding: 0 24px;
+    }
+
+    .section-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 6px 16px;
+      background: rgba(78, 205, 196, 0.1);
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.8rem;
+      color: var(--teal-dark);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 16px;
+      font-family: 'Nunito', sans-serif;
+    }
+
+    .section-title {
+      font-size: clamp(1.8rem, 5vw, 2.8rem);
+      font-weight: 900;
+      line-height: 1.2;
+      margin-bottom: 12px;
+    }
+
+    .section-desc {
+      font-size: 1.05rem;
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-weight: 500;
+      line-height: 1.6;
+    }
+
+    /* Horizontal scroll gallery */
+    .screenshot-track {
+      display: flex;
+      gap: 24px;
+      padding: 0 max(24px, calc((100vw - 1200px) / 2));
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      -webkit-overflow-scrolling: touch;
+      scrollbar-width: none;
+      cursor: grab;
+    }
+
+    .screenshot-track::-webkit-scrollbar { display: none; }
+    .screenshot-track:active { cursor: grabbing; }
+
+    .screenshot-card {
+      flex: 0 0 auto;
+      scroll-snap-align: center;
+      position: relative;
+      transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .screenshot-card:hover {
+      transform: translateY(-8px) scale(1.02);
+    }
+
+    .screenshot-card img {
+      width: 260px;
+      height: auto;
+      border-radius: 28px;
+      box-shadow:
+        0 20px 50px rgba(0,0,0,0.1),
+        0 4px 12px rgba(0,0,0,0.06);
+    }
+
+    .screenshot-label {
+      text-align: center;
+      margin-top: 16px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--text-muted);
+    }
+
+    /* Scroll indicators */
+    .scroll-hint {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      margin-top: 32px;
+      color: var(--teal);
+      font-weight: 600;
+      font-size: 0.85rem;
+      opacity: 0.7;
+      animation: swipeHint 2s ease-in-out infinite;
+    }
+
+    @keyframes swipeHint {
+      0%, 100% { transform: translateX(0); }
+      50% { transform: translateX(8px); }
+    }
+
+    /* ========== FEATURES ========== */
+    .features {
+      padding: 80px 24px 100px;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .feature-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 36px 28px;
+      text-align: center;
+      box-shadow: var(--card-shadow);
+      border: 1px solid rgba(78, 205, 196, 0.08);
+      transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.3s ease;
+      opacity: 0;
+      transform: translateY(30px);
+    }
+
+    .feature-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+      transition: opacity 0.6s ease, transform 0.6s cubic-bezier(0.34, 1.56, 0.64, 1);
+    }
+
+    .feature-card:hover {
+      transform: translateY(-6px);
+      box-shadow: 0 16px 48px rgba(78, 205, 196, 0.15), 0 4px 12px rgba(0,0,0,0.05);
+    }
+
+    .feature-icon {
+      width: 72px;
+      height: 72px;
+      border-radius: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 20px;
+      font-size: 32px;
+      position: relative;
+    }
+
+    .feature-icon.draw {
+      background: linear-gradient(135deg, rgba(255, 107, 107, 0.12), rgba(255, 140, 66, 0.12));
+    }
+    .feature-icon.guess {
+      background: linear-gradient(135deg, rgba(78, 205, 196, 0.12), rgba(78, 205, 196, 0.2));
+    }
+    .feature-icon.stars {
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.15), rgba(255, 140, 66, 0.12));
+    }
+    .feature-icon.themes {
+      background: linear-gradient(135deg, rgba(78, 205, 196, 0.12), rgba(107, 203, 119, 0.12));
+    }
+    .feature-icon.hints {
+      background: linear-gradient(135deg, rgba(255, 217, 61, 0.15), rgba(255, 217, 61, 0.25));
+    }
+
+    .feature-card h3 {
+      font-size: 1.2rem;
+      font-weight: 800;
+      margin-bottom: 10px;
+    }
+
+    .feature-card p {
+      font-size: 0.95rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ========== HOW IT WORKS ========== */
+    .how-it-works {
+      padding: 80px 24px 100px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .steps-container {
+      display: flex;
+      flex-direction: column;
+      gap: 0;
+      margin-top: 48px;
+      position: relative;
+    }
+
+    /* Connecting line */
+    .steps-container::before {
+      content: '';
+      position: absolute;
+      left: 32px;
+      top: 40px;
+      bottom: 40px;
+      width: 3px;
+      background: linear-gradient(180deg, var(--teal), var(--coral));
+      border-radius: 2px;
+      opacity: 0.2;
+    }
+
+    .step-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 24px;
+      padding: 28px 0;
+      opacity: 0;
+      transform: translateX(-20px);
+    }
+
+    .step-item.visible {
+      opacity: 1;
+      transform: translateX(0);
+      transition: opacity 0.5s ease, transform 0.5s ease;
+    }
+
+    .step-number {
+      flex: 0 0 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 900;
+      font-size: 1.4rem;
+      color: white;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-item:nth-child(1) .step-number { background: linear-gradient(135deg, var(--teal), var(--teal-dark)); }
+    .step-item:nth-child(2) .step-number { background: linear-gradient(135deg, var(--coral), var(--orange)); }
+    .step-item:nth-child(3) .step-number { background: linear-gradient(135deg, var(--star-gold), var(--orange)); }
+
+    .step-content h3 {
+      font-size: 1.3rem;
+      font-weight: 800;
+      margin-bottom: 6px;
+    }
+
+    .step-content p {
+      font-size: 1rem;
+      color: var(--text-muted);
+      line-height: 1.6;
+      font-weight: 500;
+    }
+
+    /* ========== CTA BANNER ========== */
+    .cta-banner {
+      margin: 0 24px 100px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      background: linear-gradient(135deg, var(--teal), var(--teal-dark));
+      border-radius: 32px;
+      padding: 60px 40px;
+      text-align: center;
+      color: white;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .cta-banner::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(255,255,255,0.08) 1px, transparent 1px);
+      background-size: 20px 20px;
+    }
+
+    .cta-banner h2 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 900;
+      margin-bottom: 12px;
+      position: relative;
+    }
+
+    .cta-banner p {
+      font-size: 1.05rem;
+      opacity: 0.9;
+      margin-bottom: 32px;
+      font-weight: 500;
+      position: relative;
+    }
+
+    .cta-btn-white {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 16px 36px;
+      background: white;
+      color: var(--teal-dark);
+      text-decoration: none;
+      border-radius: 60px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+      transition: transform 0.25s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.25s ease;
+      box-shadow: 0 8px 32px rgba(0,0,0,0.15);
+      position: relative;
+    }
+
+    .cta-btn-white:hover {
+      transform: translateY(-3px) scale(1.02);
+      box-shadow: 0 12px 40px rgba(0,0,0,0.2);
+    }
+
+    /* ========== FOOTER ========== */
+    .footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(78, 205, 196, 0.1);
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-size: 0.9rem;
+      transition: color 0.2s ease;
+    }
+
+    .footer-links a:hover { color: var(--teal); }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    /* ========== RESPONSIVE ========== */
+    @media (max-width: 768px) {
+      .hero { padding: 100px 20px 60px; }
+
+      .app-icon {
+        width: 110px;
+        height: 110px;
+        border-radius: 26px;
+      }
+
+      .screenshot-card img {
+        width: 220px;
+        border-radius: 24px;
+      }
+
+      .features-grid {
+        grid-template-columns: 1fr;
+        max-width: 400px;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .steps-container::before { left: 28px; }
+      .step-number { flex: 0 0 56px; height: 56px; font-size: 1.2rem; }
+
+      .cta-banner { padding: 48px 28px; border-radius: 24px; margin: 0 16px 80px; }
+
+      .hero-doodle { display: none; }
+    }
+
+    @media (min-width: 769px) {
+      .screenshot-track {
+        justify-content: center;
+        flex-wrap: wrap;
+        overflow-x: visible;
+      }
+      .scroll-hint { display: none; }
+    }
+
+    @media (min-width: 1024px) {
+      .features-grid {
+        grid-template-columns: repeat(3, 1fr);
+      }
+      /* Second row centered */
+      .feature-card:nth-child(4),
+      .feature-card:nth-child(5) {
+        max-width: 340px;
+      }
+    }
+
+    /* Accessibility */
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ====== NAVBAR ====== -->
+  <nav class="navbar" id="navbar">
+    <a href="#" class="nav-brand">
+      <img src="app-icon.png" alt="Doodle & Guess icon">
+      <span>Doodle & Guess</span>
+    </a>
+    <a href="#" class="nav-download">
+      <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      App Store
+    </a>
+  </nav>
+
+  <!-- ====== HERO ====== -->
+  <section class="hero">
+    <!-- Floating doodle decorations -->
+    <div class="hero-doodle doodle-star" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" stroke="#FFD93D" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M24 4l5.5 13.5L44 19l-11 9 3.5 15L24 36l-12.5 7L15 28 4 19l14.5-1.5z"/>
+      </svg>
+    </div>
+    <div class="hero-doodle doodle-circle" aria-hidden="true">
+      <svg viewBox="0 0 36 36" fill="none" stroke="#4ECDC4" stroke-width="2.5" stroke-linecap="round">
+        <circle cx="18" cy="18" r="14"/>
+      </svg>
+    </div>
+    <div class="hero-doodle doodle-zigzag" aria-hidden="true">
+      <svg viewBox="0 0 60 30" fill="none" stroke="#FF6B6B" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+        <polyline points="4,26 15,4 30,26 45,4 56,26"/>
+      </svg>
+    </div>
+    <div class="hero-doodle doodle-spiral" aria-hidden="true">
+      <svg viewBox="0 0 44 44" fill="none" stroke="#FF8C42" stroke-width="2" stroke-linecap="round">
+        <path d="M22 22c0-2 1.5-3.5 3.5-3.5s3.5 1.5 3.5 3.5-2.5 5.5-5.5 5.5-7.5-2.5-7.5-5.5 3.5-9.5 7.5-9.5 11.5 3.5 11.5 7.5"/>
+      </svg>
+    </div>
+
+    <div class="app-icon-wrapper">
+      <img src="app-icon.png" alt="Doodle & Guess App Icon" class="app-icon">
+    </div>
+
+    <h1 class="hero-title">
+      <span class="coral">Doodle</span> & <span class="teal">Guess</span>
+    </h1>
+
+    <p class="hero-tagline">Draw. Guess. Have Fun!</p>
+
+    <div class="hero-cta">
+      <a href="#" class="app-store-btn">
+        <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+        Download on the App Store
+      </a>
+      <span class="hero-subtitle">Free to play on iPhone & iPad</span>
+    </div>
+  </section>
+
+  <!-- ====== SCREENSHOTS ====== -->
+  <section class="screenshots" id="screenshots">
+    <div class="section-header">
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><rect x="2" y="3" width="20" height="18" rx="3"/><line x1="8" y1="21" x2="8" y2="3"/></svg>
+        Preview
+      </div>
+      <h2 class="section-title">See It In Action</h2>
+      <p class="section-desc">Follow step-by-step instructions, create beautiful drawings, and guess what you've made</p>
+    </div>
+
+    <div class="screenshot-track" id="screenshotTrack">
+      <div class="screenshot-card">
+        <img src="screenshots/menu.png" alt="Main Menu" loading="lazy">
+        <div class="screenshot-label">Main Menu</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="screenshots/theme.png" alt="Theme Selection" loading="lazy">
+        <div class="screenshot-label">Choose a Theme</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="screenshots/gameplay.png" alt="Drawing Gameplay" loading="lazy">
+        <div class="screenshot-label">Draw Step-by-Step</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="screenshots/hint.png" alt="Hint System" loading="lazy">
+        <div class="screenshot-label">Need a Hint?</div>
+      </div>
+      <div class="screenshot-card">
+        <img src="screenshots/results.png" alt="Level Complete" loading="lazy">
+        <div class="screenshot-label">Earn Stars!</div>
+      </div>
+    </div>
+
+    <div class="scroll-hint" id="scrollHint">
+      Swipe to explore
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+    </div>
+  </section>
+
+  <!-- ====== FEATURES ====== -->
+  <section class="features" id="features">
+    <div class="section-header">
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
+        Features
+      </div>
+      <h2 class="section-title">Why You'll Love It</h2>
+      <p class="section-desc">A unique blend of drawing and word-guessing that's fun for all ages</p>
+    </div>
+
+    <div class="features-grid">
+      <div class="feature-card" data-delay="0">
+        <div class="feature-icon draw">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FF6B6B" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 19l7-7 3 3-7 7-3-3z"/><path d="M18 13l-1.5-7.5L2 2l3.5 14.5L13 18l5-5z"/><path d="M2 2l7.586 7.586"/><circle cx="11" cy="11" r="2"/></svg>
+        </div>
+        <h3>Step-by-Step Drawing</h3>
+        <p>Follow easy instructions to create drawings one step at a time. No art skills needed!</p>
+      </div>
+
+      <div class="feature-card" data-delay="100">
+        <div class="feature-icon guess">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+        </div>
+        <h3>Guess the Word</h3>
+        <p>Can you figure out what you're drawing before the final step? The sooner you guess, the more stars you earn!</p>
+      </div>
+
+      <div class="feature-card" data-delay="200">
+        <div class="feature-icon stars">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FF8C42" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"/></svg>
+        </div>
+        <h3>Earn Stars & Coins</h3>
+        <p>Collect stars for each level and earn coins to unlock hints and new content.</p>
+      </div>
+
+      <div class="feature-card" data-delay="300">
+        <div class="feature-icon themes">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#4ECDC4" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        </div>
+        <h3>Multiple Themes</h3>
+        <p>Explore Animals, Food, Objects, Nature, and more. Unlock new themes as you progress!</p>
+      </div>
+
+      <div class="feature-card" data-delay="400">
+        <div class="feature-icon hints">
+          <svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="#FFD93D" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6"/><path d="M10 22h4"/><path d="M12 2a7 7 0 0 0-4 12.7V17h8v-2.3A7 7 0 0 0 12 2z"/></svg>
+        </div>
+        <h3>Hint System</h3>
+        <p>Stuck? Reveal a letter or skip a step using coins. But use hints wisely &mdash; they cost stars!</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== HOW IT WORKS ====== -->
+  <section class="how-it-works" id="how">
+    <div class="section-header">
+      <div class="section-label">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
+        How It Works
+      </div>
+      <h2 class="section-title">Simple & Fun Gameplay</h2>
+    </div>
+
+    <div class="steps-container">
+      <div class="step-item">
+        <div class="step-number">1</div>
+        <div class="step-content">
+          <h3>Pick a Theme</h3>
+          <p>Choose from categories like Animals, Food, and more. Each theme has unique levels waiting to be drawn and guessed.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">2</div>
+        <div class="step-content">
+          <h3>Draw Step-by-Step</h3>
+          <p>Follow the instructions and draw on the canvas. Each step reveals a bit more of the mystery picture.</p>
+        </div>
+      </div>
+      <div class="step-item">
+        <div class="step-number">3</div>
+        <div class="step-content">
+          <h3>Guess & Earn</h3>
+          <p>Figure out what you're drawing as early as possible! The fewer steps you need, the more stars and coins you'll earn.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ====== CTA BANNER ====== -->
+  <section class="cta-banner">
+    <h2>Ready to Doodle?</h2>
+    <p>Download Doodle & Guess for free and start your creative journey today.</p>
+    <a href="#" class="cta-btn-white">
+      <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="color: var(--teal-dark)"><path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.8-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z"/></svg>
+      Download Free
+    </a>
+  </section>
+
+  <!-- ====== FOOTER ====== -->
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:support@doodleandguess.com">Support</a>
+    </div>
+    <p class="footer-copy">&copy; 2025 Doodle & Guess. All rights reserved.</p>
+  </footer>
+
+  <script>
+    // Navbar scroll effect
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      navbar.classList.toggle('scrolled', window.scrollY > 20);
+    }, { passive: true });
+
+    // Intersection Observer for animations
+    const observerOptions = { threshold: 0.15, rootMargin: '0px 0px -40px 0px' };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const delay = entry.target.dataset.delay || 0;
+          setTimeout(() => {
+            entry.target.classList.add('visible');
+          }, parseInt(delay));
+          observer.unobserve(entry.target);
+        }
+      });
+    }, observerOptions);
+
+    // Observe feature cards
+    document.querySelectorAll('.feature-card').forEach(card => observer.observe(card));
+
+    // Observe step items
+    document.querySelectorAll('.step-item').forEach((step, i) => {
+      step.dataset.delay = i * 150;
+      observer.observe(step);
+    });
+
+    // Observe hero doodles
+    document.querySelectorAll('.hero-doodle').forEach(d => observer.observe(d));
+
+    // Drag-to-scroll for screenshot track
+    const track = document.getElementById('screenshotTrack');
+    let isDown = false, startX, scrollLeft;
+
+    track.addEventListener('mousedown', e => {
+      isDown = true;
+      startX = e.pageX - track.offsetLeft;
+      scrollLeft = track.scrollLeft;
+    });
+    track.addEventListener('mouseleave', () => isDown = false);
+    track.addEventListener('mouseup', () => isDown = false);
+    track.addEventListener('mousemove', e => {
+      if (!isDown) return;
+      e.preventDefault();
+      const x = e.pageX - track.offsetLeft;
+      track.scrollLeft = scrollLeft - (x - startX) * 1.5;
+    });
+
+    // Hide scroll hint after first scroll
+    const scrollHint = document.getElementById('scrollHint');
+    track.addEventListener('scroll', () => {
+      if (track.scrollLeft > 30 && scrollHint) {
+        scrollHint.style.opacity = '0';
+        scrollHint.style.transition = 'opacity 0.3s ease';
+      }
+    }, { passive: true });
+  </script>
+
+</body>
+</html>

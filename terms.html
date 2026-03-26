@@ -1,0 +1,736 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Terms of Use - Doodle & Guess</title>
+  <meta name="description" content="Terms of Use for Doodle & Guess iOS drawing puzzle game.">
+  <link rel="icon" type="image/png" href="app-icon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800;900&family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --cream-top: #FDF8F3;
+      --cream-bottom: #F5EDE4;
+      --coral: #FF6B6B;
+      --orange: #FF8C42;
+      --teal: #4ECDC4;
+      --teal-dark: #3ab5ad;
+      --white: #FFFFFF;
+      --text-dark: #2D3436;
+      --text-muted: #8B8585;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Quicksand', sans-serif;
+      color: var(--text-dark);
+      background: var(--cream-top);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background:
+        radial-gradient(ellipse at 20% 0%, rgba(78, 205, 196, 0.08) 0%, transparent 50%),
+        radial-gradient(ellipse at 80% 100%, rgba(255, 107, 107, 0.06) 0%, transparent 50%),
+        linear-gradient(180deg, var(--cream-top) 0%, var(--cream-bottom) 100%);
+      z-index: -2;
+    }
+
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image: radial-gradient(circle, rgba(78, 205, 196, 0.07) 1px, transparent 1px);
+      background-size: 28px 28px;
+      z-index: -1;
+    }
+
+    h1, h2, h3 { font-family: 'Nunito', sans-serif; }
+
+    a { color: var(--teal-dark); text-decoration: none; }
+    a:hover { text-decoration: underline; }
+
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      z-index: 100;
+      padding: 16px 24px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: rgba(253, 248, 243, 0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      border-bottom: 1px solid rgba(78, 205, 196, 0.1);
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    }
+
+    .nav-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-dark);
+    }
+
+    .nav-brand:hover { text-decoration: none; }
+
+    .nav-brand img {
+      width: 36px;
+      height: 36px;
+      border-radius: 8px;
+    }
+
+    .nav-brand span {
+      font-family: 'Nunito', sans-serif;
+      font-weight: 800;
+      font-size: 1.1rem;
+    }
+
+    .nav-back {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 20px;
+      background: rgba(78, 205, 196, 0.1);
+      color: var(--teal-dark);
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 700;
+      font-size: 0.85rem;
+      font-family: 'Nunito', sans-serif;
+      transition: background 0.2s ease;
+    }
+
+    .nav-back:hover {
+      background: rgba(78, 205, 196, 0.2);
+      text-decoration: none;
+    }
+
+    .page-content {
+      max-width: 780px;
+      margin: 0 auto;
+      padding: 110px 24px 80px;
+    }
+
+    .page-header {
+      text-align: center;
+      margin-bottom: 48px;
+    }
+
+    .page-header h1 {
+      font-size: clamp(2rem, 5vw, 3rem);
+      font-weight: 900;
+      margin-bottom: 8px;
+    }
+
+    .page-header h1 .coral {
+      background: linear-gradient(135deg, var(--coral), var(--orange));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+
+    .page-header .subtitle {
+      font-size: 1rem;
+      color: var(--text-muted);
+      font-weight: 600;
+    }
+
+    .page-header .effective-date {
+      font-size: 0.9rem;
+      color: var(--text-muted);
+      font-style: italic;
+      margin-top: 4px;
+    }
+
+    .policy-card {
+      background: var(--white);
+      border-radius: 24px;
+      padding: 48px 40px;
+      box-shadow: 0 8px 32px rgba(78, 205, 196, 0.1), 0 2px 8px rgba(0,0,0,0.04);
+      border: 1px solid rgba(78, 205, 196, 0.08);
+    }
+
+    .policy-card h2 {
+      font-size: 1.4rem;
+      font-weight: 800;
+      margin-top: 36px;
+      margin-bottom: 14px;
+      padding-bottom: 8px;
+      border-bottom: 2px solid rgba(78, 205, 196, 0.15);
+      color: var(--text-dark);
+    }
+
+    .policy-card h2:first-child { margin-top: 0; }
+
+    .policy-card h3 {
+      font-size: 1.05rem;
+      font-weight: 700;
+      margin-top: 20px;
+      margin-bottom: 8px;
+      color: var(--text-dark);
+    }
+
+    .policy-card p {
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #555;
+      margin-bottom: 12px;
+      font-weight: 500;
+    }
+
+    .policy-card ul {
+      margin: 8px 0 16px 20px;
+      font-size: 0.95rem;
+      line-height: 1.75;
+      color: #555;
+      font-weight: 500;
+    }
+
+    .policy-card ul li { margin-bottom: 4px; }
+
+    .policy-card a {
+      color: var(--teal-dark);
+      font-weight: 600;
+      text-decoration: underline;
+      text-underline-offset: 2px;
+    }
+
+    .policy-card a:hover { color: var(--coral); }
+
+    .lang-switcher {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 32px;
+    }
+
+    .lang-btn {
+      padding: 6px 16px;
+      border-radius: 50px;
+      font-family: 'Nunito', sans-serif;
+      font-weight: 700;
+      font-size: 0.8rem;
+      text-decoration: none;
+      transition: all 0.2s ease;
+      border: 2px solid rgba(78, 205, 196, 0.2);
+      color: var(--text-muted);
+    }
+
+    .lang-btn:hover {
+      border-color: var(--teal);
+      color: var(--teal-dark);
+      text-decoration: none;
+    }
+
+    .lang-btn.active {
+      background: var(--teal);
+      color: white;
+      border-color: var(--teal);
+    }
+
+    .lang-btn.active:hover { color: white; }
+
+    .policy-lang { display: none; }
+    .policy-lang.active { display: block; }
+
+    .footer {
+      padding: 40px 24px;
+      text-align: center;
+      border-top: 1px solid rgba(78, 205, 196, 0.1);
+      margin-top: 60px;
+    }
+
+    .footer-links {
+      display: flex;
+      justify-content: center;
+      gap: 24px;
+      margin-bottom: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer-links a {
+      color: var(--text-muted);
+      font-weight: 600;
+      font-size: 0.9rem;
+    }
+
+    .footer-links a:hover { color: var(--teal); text-decoration: none; }
+
+    .footer-copy {
+      font-size: 0.8rem;
+      color: var(--text-muted);
+      font-weight: 500;
+    }
+
+    @media (max-width: 768px) {
+      .policy-card { padding: 32px 24px; border-radius: 20px; }
+      .page-content { padding: 100px 16px 60px; }
+    }
+  </style>
+</head>
+<body>
+
+  <nav class="navbar">
+    <a href="index.html" class="nav-brand">
+      <img src="app-icon.png" alt="Doodle & Guess icon">
+      <span>Doodle & Guess</span>
+    </a>
+    <a href="index.html" class="nav-back">
+      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M19 12H5M12 19l-7-7 7-7"/></svg>
+      Back to Home
+    </a>
+  </nav>
+
+  <main class="page-content">
+    <div class="page-header">
+      <h1><span class="coral">Terms</span> of Use</h1>
+      <p class="subtitle">Doodle & Guess</p>
+      <p class="effective-date">Effective Date: March 25, 2026</p>
+    </div>
+
+    <div class="lang-switcher">
+      <a href="#" class="lang-btn active" data-lang="en">English</a>
+      <a href="#" class="lang-btn" data-lang="de">Deutsch</a>
+      <a href="#" class="lang-btn" data-lang="es">Espa&ntilde;ol</a>
+      <a href="#" class="lang-btn" data-lang="fr">Fran&ccedil;ais</a>
+      <a href="#" class="lang-btn" data-lang="tr">T&uuml;rk&ccedil;e</a>
+    </div>
+
+    <!-- ====== ENGLISH ====== -->
+    <div class="policy-card policy-lang active" id="lang-en">
+      <h2>1. Acceptance of Terms</h2>
+      <p>By downloading, installing, or using Doodle &amp; Guess ("the App"), you agree to be bound by these Terms of Use. If you do not agree to these terms, please do not use the App.</p>
+
+      <h2>2. Description of Service</h2>
+      <p>Doodle &amp; Guess is a mobile drawing puzzle game for iOS where players follow step-by-step drawing instructions and guess what they are drawing. The App includes:</p>
+      <ul>
+        <li>Free-to-play core gameplay</li>
+        <li>In-app purchases (coin packs, ad removal, theme bundles)</li>
+        <li>Third-party advertisements</li>
+      </ul>
+
+      <h2>3. Eligibility</h2>
+      <p>You must be at least 13 years of age to use the App. If you are under 18, you represent that your parent or legal guardian has reviewed and agreed to these Terms on your behalf.</p>
+
+      <h2>4. User Conduct</h2>
+      <p>You agree not to:</p>
+      <ul>
+        <li>Reverse engineer, decompile, or disassemble the App</li>
+        <li>Modify, adapt, or create derivative works based on the App</li>
+        <li>Use the App for any unlawful or unauthorized purpose</li>
+        <li>Attempt to gain unauthorized access to the App's systems or networks</li>
+        <li>Use cheats, exploits, automation software, or any unauthorized third-party tools</li>
+        <li>Interfere with or disrupt the integrity or performance of the App</li>
+      </ul>
+
+      <h2>5. Intellectual Property</h2>
+      <p>All content in the App, including but not limited to graphics, images, text, sounds, game data, the Core ML model, and software code, is the property of the developer and is protected by copyright and intellectual property laws. You may not copy, distribute, or reproduce any content from the App without prior written consent.</p>
+
+      <h2>6. In-App Purchases</h2>
+      <p>The App offers in-app purchases through Apple's App Store. By making a purchase, you agree to Apple's terms of service. All purchases are processed by Apple and are subject to Apple's refund policies.</p>
+      <ul>
+        <li><strong>Consumable items</strong> (coin packs) are used within the App and cannot be restored once consumed</li>
+        <li><strong>Non-consumable items</strong> (ad removal, theme bundles) can be restored on the same Apple ID</li>
+        <li>Prices are displayed in your local currency and may vary by region</li>
+        <li>You are responsible for all charges incurred through your account</li>
+      </ul>
+
+      <h2>7. Virtual Currency</h2>
+      <p>The App uses virtual coins as in-game currency. Virtual coins:</p>
+      <ul>
+        <li>Have no real-world monetary value</li>
+        <li>Cannot be exchanged, transferred, or redeemed for real money</li>
+        <li>May be earned through gameplay or purchased via in-app purchases</li>
+        <li>May be used to purchase hints and other in-game items</li>
+        <li>Are stored locally on your device and may be lost if the App is deleted</li>
+      </ul>
+
+      <h2>8. Advertisements</h2>
+      <p>The App displays third-party advertisements. Ad content is provided by third-party ad networks and we are not responsible for the content or accuracy of these advertisements. You may remove ads through an in-app purchase.</p>
+
+      <h2>9. Availability and Updates</h2>
+      <p>We reserve the right to:</p>
+      <ul>
+        <li>Modify, update, or discontinue the App at any time without notice</li>
+        <li>Change game content, features, or pricing</li>
+        <li>Release updates that may change the App's functionality</li>
+      </ul>
+      <p>We do not guarantee uninterrupted or error-free operation of the App.</p>
+
+      <h2>10. Disclaimer of Warranties</h2>
+      <p>The App is provided "as is" and "as available" without warranties of any kind, either express or implied, including but not limited to implied warranties of merchantability, fitness for a particular purpose, and non-infringement. We do not warrant that the App will be uninterrupted, secure, or error-free.</p>
+
+      <h2>11. Limitation of Liability</h2>
+      <p>To the fullest extent permitted by law, the developer shall not be liable for any indirect, incidental, special, consequential, or punitive damages, including but not limited to loss of data, loss of profits, or loss of game progress, arising out of your use or inability to use the App.</p>
+
+      <h2>12. Indemnification</h2>
+      <p>You agree to indemnify and hold harmless the developer from any claims, damages, losses, or expenses arising from your violation of these Terms or your use of the App.</p>
+
+      <h2>13. Governing Law</h2>
+      <p>These Terms shall be governed by and construed in accordance with the laws of the Republic of Turkey, without regard to its conflict of law provisions.</p>
+
+      <h2>14. Changes to These Terms</h2>
+      <p>We may update these Terms from time to time. Changes will be posted within the App and the effective date will be updated. Your continued use of the App after changes constitutes acceptance of the updated Terms.</p>
+
+      <h2>15. Contact Us</h2>
+      <p>If you have questions about these Terms of Use, please contact us at: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== GERMAN ====== -->
+    <div class="policy-card policy-lang" id="lang-de">
+      <h2>1. Annahme der Nutzungsbedingungen</h2>
+      <p>Durch das Herunterladen, Installieren oder Nutzen von Doodle &amp; Guess (&bdquo;die App&ldquo;) stimmen Sie diesen Nutzungsbedingungen zu. Wenn Sie diesen Bedingungen nicht zustimmen, nutzen Sie die App bitte nicht.</p>
+
+      <h2>2. Beschreibung des Dienstes</h2>
+      <p>Doodle &amp; Guess ist ein mobiles Zeichen-Puzzle-Spiel f&uuml;r iOS, bei dem Spieler Schritt-f&uuml;r-Schritt-Zeichenanweisungen befolgen und erraten, was sie zeichnen. Die App umfasst:</p>
+      <ul>
+        <li>Kostenlos spielbares Kernspiel</li>
+        <li>In-App-K&auml;ufe (M&uuml;nzpakete, Werbeentfernung, Themenpakete)</li>
+        <li>Werbung von Drittanbietern</li>
+      </ul>
+
+      <h2>3. Berechtigung</h2>
+      <p>Sie m&uuml;ssen mindestens 13 Jahre alt sein, um die App zu nutzen. Wenn Sie unter 18 sind, best&auml;tigen Sie, dass Ihr Elternteil oder Erziehungsberechtigter diese Bedingungen &uuml;berpr&uuml;ft und in Ihrem Namen zugestimmt hat.</p>
+
+      <h2>4. Nutzerverhalten</h2>
+      <p>Sie stimmen zu, Folgendes nicht zu tun:</p>
+      <ul>
+        <li>Die App r&uuml;ckentwickeln, dekompilieren oder disassemblieren</li>
+        <li>Die App modifizieren, anpassen oder abgeleitete Werke erstellen</li>
+        <li>Die App f&uuml;r rechtswidrige oder unbefugte Zwecke nutzen</li>
+        <li>Versuchen, unbefugten Zugang zu den Systemen oder Netzwerken der App zu erlangen</li>
+        <li>Cheats, Exploits, Automatisierungssoftware oder unautorisierte Tools verwenden</li>
+        <li>Die Integrit&auml;t oder Leistung der App beeintr&auml;chtigen oder st&ouml;ren</li>
+      </ul>
+
+      <h2>5. Geistiges Eigentum</h2>
+      <p>Alle Inhalte der App, einschlie&szlig;lich Grafiken, Bilder, Texte, Sounds, Spieldaten, das Core-ML-Modell und Softwarecode, sind Eigentum des Entwicklers und durch Urheber- und geistige Eigentumsrechte gesch&uuml;tzt. Sie d&uuml;rfen keine Inhalte der App ohne vorherige schriftliche Zustimmung kopieren, verteilen oder reproduzieren.</p>
+
+      <h2>6. In-App-K&auml;ufe</h2>
+      <p>Die App bietet In-App-K&auml;ufe &uuml;ber den Apple App Store an. Mit einem Kauf stimmen Sie den Nutzungsbedingungen von Apple zu. Alle K&auml;ufe werden von Apple abgewickelt und unterliegen den R&uuml;ckerstattungsrichtlinien von Apple.</p>
+      <ul>
+        <li><strong>Verbrauchsgegenst&auml;nde</strong> (M&uuml;nzpakete) werden in der App verbraucht und k&ouml;nnen nach Verbrauch nicht wiederhergestellt werden</li>
+        <li><strong>Nicht verbrauchbare Gegenst&auml;nde</strong> (Werbeentfernung, Themenpakete) k&ouml;nnen mit derselben Apple-ID wiederhergestellt werden</li>
+        <li>Preise werden in Ihrer lokalen W&auml;hrung angezeigt und k&ouml;nnen je nach Region variieren</li>
+        <li>Sie sind f&uuml;r alle &uuml;ber Ihr Konto anfallenden Geb&uuml;hren verantwortlich</li>
+      </ul>
+
+      <h2>7. Virtuelle W&auml;hrung</h2>
+      <p>Die App verwendet virtuelle M&uuml;nzen als Spielw&auml;hrung. Virtuelle M&uuml;nzen:</p>
+      <ul>
+        <li>Haben keinen realen Geldwert</li>
+        <li>K&ouml;nnen nicht gegen echtes Geld eingetauscht, &uuml;bertragen oder eingel&ouml;st werden</li>
+        <li>K&ouml;nnen durch Gameplay verdient oder &uuml;ber In-App-K&auml;ufe erworben werden</li>
+        <li>K&ouml;nnen f&uuml;r Hinweise und andere Spielgegenst&auml;nde verwendet werden</li>
+        <li>Werden lokal auf Ihrem Ger&auml;t gespeichert und k&ouml;nnen verloren gehen, wenn die App gel&ouml;scht wird</li>
+      </ul>
+
+      <h2>8. Werbung</h2>
+      <p>Die App zeigt Werbung von Drittanbietern an. Werbeinhalte werden von Drittanbieter-Werbenetzwerken bereitgestellt und wir sind nicht f&uuml;r den Inhalt oder die Richtigkeit dieser Werbung verantwortlich. Sie k&ouml;nnen Werbung durch einen In-App-Kauf entfernen.</p>
+
+      <h2>9. Verf&uuml;gbarkeit und Updates</h2>
+      <p>Wir behalten uns das Recht vor:</p>
+      <ul>
+        <li>Die App jederzeit ohne Vorankündigung zu &auml;ndern, zu aktualisieren oder einzustellen</li>
+        <li>Spielinhalte, Funktionen oder Preise zu &auml;ndern</li>
+        <li>Updates zu ver&ouml;ffentlichen, die die Funktionalit&auml;t der App &auml;ndern k&ouml;nnen</li>
+      </ul>
+      <p>Wir garantieren keinen ununterbrochenen oder fehlerfreien Betrieb der App.</p>
+
+      <h2>10. Haftungsausschluss</h2>
+      <p>Die App wird &bdquo;wie besehen&ldquo; und &bdquo;wie verf&uuml;gbar&ldquo; ohne jegliche Garantien bereitgestellt, weder ausdr&uuml;cklich noch stillschweigend. Wir garantieren nicht, dass die App ununterbrochen, sicher oder fehlerfrei funktioniert.</p>
+
+      <h2>11. Haftungsbeschr&auml;nkung</h2>
+      <p>Im gr&ouml;&szlig;tm&ouml;glichen gesetzlich zul&auml;ssigen Umfang haftet der Entwickler nicht f&uuml;r indirekte, zuf&auml;llige, besondere oder Folgesch&auml;den, einschlie&szlig;lich Datenverlust, Gewinnverlust oder Verlust des Spielfortschritts.</p>
+
+      <h2>12. Freistellung</h2>
+      <p>Sie stimmen zu, den Entwickler von allen Anspr&uuml;chen, Sch&auml;den, Verlusten oder Kosten freizustellen, die aus Ihrem Versto&szlig; gegen diese Bedingungen oder Ihrer Nutzung der App entstehen.</p>
+
+      <h2>13. Anwendbares Recht</h2>
+      <p>Diese Bedingungen unterliegen den Gesetzen der Republik T&uuml;rkei und werden nach diesen ausgelegt.</p>
+
+      <h2>14. &Auml;nderungen dieser Bedingungen</h2>
+      <p>Wir k&ouml;nnen diese Bedingungen von Zeit zu Zeit aktualisieren. &Auml;nderungen werden in der App ver&ouml;ffentlicht und das G&uuml;ltigkeitsdatum wird aktualisiert. Die weitere Nutzung der App nach &Auml;nderungen gilt als Zustimmung zu den aktualisierten Bedingungen.</p>
+
+      <h2>15. Kontakt</h2>
+      <p>Wenn Sie Fragen zu diesen Nutzungsbedingungen haben, kontaktieren Sie uns bitte unter: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== SPANISH ====== -->
+    <div class="policy-card policy-lang" id="lang-es">
+      <h2>1. Aceptaci&oacute;n de los T&eacute;rminos</h2>
+      <p>Al descargar, instalar o usar Doodle &amp; Guess (&ldquo;la Aplicaci&oacute;n&rdquo;), usted acepta estar sujeto a estos T&eacute;rminos de Uso. Si no est&aacute; de acuerdo con estos t&eacute;rminos, no utilice la Aplicaci&oacute;n.</p>
+
+      <h2>2. Descripci&oacute;n del Servicio</h2>
+      <p>Doodle &amp; Guess es un juego m&oacute;vil de rompecabezas de dibujo para iOS donde los jugadores siguen instrucciones paso a paso y adivinan lo que est&aacute;n dibujando. La Aplicaci&oacute;n incluye:</p>
+      <ul>
+        <li>Jugabilidad b&aacute;sica gratuita</li>
+        <li>Compras dentro de la aplicaci&oacute;n (paquetes de monedas, eliminaci&oacute;n de anuncios, paquetes de temas)</li>
+        <li>Anuncios de terceros</li>
+      </ul>
+
+      <h2>3. Elegibilidad</h2>
+      <p>Debe tener al menos 13 a&ntilde;os para usar la Aplicaci&oacute;n. Si es menor de 18 a&ntilde;os, declara que su padre o tutor legal ha revisado y aceptado estos T&eacute;rminos en su nombre.</p>
+
+      <h2>4. Conducta del Usuario</h2>
+      <p>Usted acepta no:</p>
+      <ul>
+        <li>Realizar ingenier&iacute;a inversa, descompilar o desensamblar la Aplicaci&oacute;n</li>
+        <li>Modificar, adaptar o crear obras derivadas basadas en la Aplicaci&oacute;n</li>
+        <li>Usar la Aplicaci&oacute;n para fines ilegales o no autorizados</li>
+        <li>Intentar obtener acceso no autorizado a los sistemas o redes de la Aplicaci&oacute;n</li>
+        <li>Usar trucos, exploits, software de automatizaci&oacute;n o herramientas no autorizadas</li>
+        <li>Interferir o interrumpir la integridad o el rendimiento de la Aplicaci&oacute;n</li>
+      </ul>
+
+      <h2>5. Propiedad Intelectual</h2>
+      <p>Todo el contenido de la Aplicaci&oacute;n, incluyendo gr&aacute;ficos, im&aacute;genes, texto, sonidos, datos del juego, el modelo Core ML y c&oacute;digo de software, es propiedad del desarrollador y est&aacute; protegido por derechos de autor y leyes de propiedad intelectual. No puede copiar, distribuir ni reproducir ning&uacute;n contenido de la Aplicaci&oacute;n sin consentimiento previo por escrito.</p>
+
+      <h2>6. Compras dentro de la Aplicaci&oacute;n</h2>
+      <p>La Aplicaci&oacute;n ofrece compras dentro de la aplicaci&oacute;n a trav&eacute;s del App Store de Apple. Al realizar una compra, acepta los t&eacute;rminos de servicio de Apple. Todas las compras son procesadas por Apple y est&aacute;n sujetas a las pol&iacute;ticas de reembolso de Apple.</p>
+      <ul>
+        <li><strong>Art&iacute;culos consumibles</strong> (paquetes de monedas) se usan dentro de la Aplicaci&oacute;n y no pueden restaurarse una vez consumidos</li>
+        <li><strong>Art&iacute;culos no consumibles</strong> (eliminaci&oacute;n de anuncios, paquetes de temas) pueden restaurarse con el mismo Apple ID</li>
+        <li>Los precios se muestran en su moneda local y pueden variar seg&uacute;n la regi&oacute;n</li>
+        <li>Usted es responsable de todos los cargos incurridos a trav&eacute;s de su cuenta</li>
+      </ul>
+
+      <h2>7. Moneda Virtual</h2>
+      <p>La Aplicaci&oacute;n utiliza monedas virtuales como moneda del juego. Las monedas virtuales:</p>
+      <ul>
+        <li>No tienen valor monetario real</li>
+        <li>No pueden intercambiarse, transferirse ni canjearse por dinero real</li>
+        <li>Pueden ganarse jugando o comprarse mediante compras dentro de la aplicaci&oacute;n</li>
+        <li>Pueden usarse para comprar pistas y otros art&iacute;culos del juego</li>
+        <li>Se almacenan localmente en su dispositivo y pueden perderse si se elimina la Aplicaci&oacute;n</li>
+      </ul>
+
+      <h2>8. Publicidad</h2>
+      <p>La Aplicaci&oacute;n muestra anuncios de terceros. El contenido publicitario es proporcionado por redes publicitarias de terceros y no somos responsables del contenido o la precisi&oacute;n de estos anuncios. Puede eliminar los anuncios mediante una compra dentro de la aplicaci&oacute;n.</p>
+
+      <h2>9. Disponibilidad y Actualizaciones</h2>
+      <p>Nos reservamos el derecho de:</p>
+      <ul>
+        <li>Modificar, actualizar o descontinuar la Aplicaci&oacute;n en cualquier momento sin previo aviso</li>
+        <li>Cambiar el contenido del juego, las caracter&iacute;sticas o los precios</li>
+        <li>Publicar actualizaciones que puedan cambiar la funcionalidad de la Aplicaci&oacute;n</li>
+      </ul>
+      <p>No garantizamos el funcionamiento ininterrumpido o libre de errores de la Aplicaci&oacute;n.</p>
+
+      <h2>10. Exenci&oacute;n de Garant&iacute;as</h2>
+      <p>La Aplicaci&oacute;n se proporciona &ldquo;tal cual&rdquo; y &ldquo;seg&uacute;n disponibilidad&rdquo; sin garant&iacute;as de ning&uacute;n tipo, expresas o impl&iacute;citas. No garantizamos que la Aplicaci&oacute;n funcione de manera ininterrumpida, segura o libre de errores.</p>
+
+      <h2>11. Limitaci&oacute;n de Responsabilidad</h2>
+      <p>En la m&aacute;xima medida permitida por la ley, el desarrollador no ser&aacute; responsable de ning&uacute;n da&ntilde;o indirecto, incidental, especial, consecuente o punitivo, incluyendo p&eacute;rdida de datos, p&eacute;rdida de beneficios o p&eacute;rdida del progreso del juego.</p>
+
+      <h2>12. Indemnizaci&oacute;n</h2>
+      <p>Usted acepta indemnizar y mantener indemne al desarrollador de cualquier reclamaci&oacute;n, da&ntilde;o, p&eacute;rdida o gasto derivado de su violaci&oacute;n de estos T&eacute;rminos o su uso de la Aplicaci&oacute;n.</p>
+
+      <h2>13. Ley Aplicable</h2>
+      <p>Estos T&eacute;rminos se regir&aacute;n e interpretar&aacute;n de acuerdo con las leyes de la Rep&uacute;blica de Turqu&iacute;a.</p>
+
+      <h2>14. Cambios en estos T&eacute;rminos</h2>
+      <p>Podemos actualizar estos T&eacute;rminos de vez en cuando. Los cambios se publicar&aacute;n dentro de la Aplicaci&oacute;n y se actualizar&aacute; la fecha de vigencia. El uso continuado de la Aplicaci&oacute;n despu&eacute;s de los cambios constituye la aceptaci&oacute;n de los T&eacute;rminos actualizados.</p>
+
+      <h2>15. Cont&aacute;ctenos</h2>
+      <p>Si tiene preguntas sobre estos T&eacute;rminos de Uso, cont&aacute;ctenos en: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== FRENCH ====== -->
+    <div class="policy-card policy-lang" id="lang-fr">
+      <h2>1. Acceptation des Conditions</h2>
+      <p>En t&eacute;l&eacute;chargeant, installant ou utilisant Doodle &amp; Guess (&laquo; l'Application &raquo;), vous acceptez d'&ecirc;tre li&eacute; par ces Conditions d'Utilisation. Si vous n'acceptez pas ces conditions, veuillez ne pas utiliser l'Application.</p>
+
+      <h2>2. Description du Service</h2>
+      <p>Doodle &amp; Guess est un jeu mobile de puzzle de dessin pour iOS o&ugrave; les joueurs suivent des instructions de dessin &eacute;tape par &eacute;tape et devinent ce qu'ils dessinent. L'Application comprend :</p>
+      <ul>
+        <li>Gameplay de base gratuit</li>
+        <li>Achats int&eacute;gr&eacute;s (packs de pi&egrave;ces, suppression des publicit&eacute;s, packs de th&egrave;mes)</li>
+        <li>Publicit&eacute;s de tiers</li>
+      </ul>
+
+      <h2>3. &Eacute;ligibilit&eacute;</h2>
+      <p>Vous devez avoir au moins 13 ans pour utiliser l'Application. Si vous avez moins de 18 ans, vous d&eacute;clarez que votre parent ou tuteur l&eacute;gal a examin&eacute; et accept&eacute; ces Conditions en votre nom.</p>
+
+      <h2>4. Conduite de l'Utilisateur</h2>
+      <p>Vous acceptez de ne pas :</p>
+      <ul>
+        <li>Effectuer de l'ing&eacute;nierie inverse, d&eacute;compiler ou d&eacute;sassembler l'Application</li>
+        <li>Modifier, adapter ou cr&eacute;er des &oelig;uvres d&eacute;riv&eacute;es bas&eacute;es sur l'Application</li>
+        <li>Utiliser l'Application &agrave; des fins ill&eacute;gales ou non autoris&eacute;es</li>
+        <li>Tenter d'obtenir un acc&egrave;s non autoris&eacute; aux syst&egrave;mes ou r&eacute;seaux de l'Application</li>
+        <li>Utiliser des triches, exploits, logiciels d'automatisation ou outils tiers non autoris&eacute;s</li>
+        <li>Interf&eacute;rer avec ou perturber l'int&eacute;grit&eacute; ou les performances de l'Application</li>
+      </ul>
+
+      <h2>5. Propri&eacute;t&eacute; Intellectuelle</h2>
+      <p>Tout le contenu de l'Application, y compris les graphiques, images, textes, sons, donn&eacute;es de jeu, le mod&egrave;le Core ML et le code logiciel, est la propri&eacute;t&eacute; du d&eacute;veloppeur et est prot&eacute;g&eacute; par les droits d'auteur et les lois sur la propri&eacute;t&eacute; intellectuelle. Vous ne pouvez pas copier, distribuer ou reproduire tout contenu de l'Application sans consentement &eacute;crit pr&eacute;alable.</p>
+
+      <h2>6. Achats Int&eacute;gr&eacute;s</h2>
+      <p>L'Application propose des achats int&eacute;gr&eacute;s via l'App Store d'Apple. En effectuant un achat, vous acceptez les conditions de service d'Apple. Tous les achats sont trait&eacute;s par Apple et sont soumis aux politiques de remboursement d'Apple.</p>
+      <ul>
+        <li><strong>Articles consommables</strong> (packs de pi&egrave;ces) sont utilis&eacute;s dans l'Application et ne peuvent pas &ecirc;tre restaur&eacute;s une fois consomm&eacute;s</li>
+        <li><strong>Articles non consommables</strong> (suppression des publicit&eacute;s, packs de th&egrave;mes) peuvent &ecirc;tre restaur&eacute;s avec le m&ecirc;me Apple ID</li>
+        <li>Les prix sont affich&eacute;s dans votre devise locale et peuvent varier selon la r&eacute;gion</li>
+        <li>Vous &ecirc;tes responsable de tous les frais engag&eacute;s via votre compte</li>
+      </ul>
+
+      <h2>7. Monnaie Virtuelle</h2>
+      <p>L'Application utilise des pi&egrave;ces virtuelles comme monnaie de jeu. Les pi&egrave;ces virtuelles :</p>
+      <ul>
+        <li>N'ont aucune valeur mon&eacute;taire r&eacute;elle</li>
+        <li>Ne peuvent pas &ecirc;tre &eacute;chang&eacute;es, transf&eacute;r&eacute;es ou rembours&eacute;es contre de l'argent r&eacute;el</li>
+        <li>Peuvent &ecirc;tre gagn&eacute;es en jouant ou achet&eacute;es via des achats int&eacute;gr&eacute;s</li>
+        <li>Peuvent &ecirc;tre utilis&eacute;es pour acheter des indices et autres articles du jeu</li>
+        <li>Sont stock&eacute;es localement sur votre appareil et peuvent &ecirc;tre perdues si l'Application est supprim&eacute;e</li>
+      </ul>
+
+      <h2>8. Publicit&eacute;s</h2>
+      <p>L'Application affiche des publicit&eacute;s de tiers. Le contenu publicitaire est fourni par des r&eacute;seaux publicitaires tiers et nous ne sommes pas responsables du contenu ou de l'exactitude de ces publicit&eacute;s. Vous pouvez supprimer les publicit&eacute;s via un achat int&eacute;gr&eacute;.</p>
+
+      <h2>9. Disponibilit&eacute; et Mises &agrave; Jour</h2>
+      <p>Nous nous r&eacute;servons le droit de :</p>
+      <ul>
+        <li>Modifier, mettre &agrave; jour ou arr&ecirc;ter l'Application &agrave; tout moment sans pr&eacute;avis</li>
+        <li>Modifier le contenu du jeu, les fonctionnalit&eacute;s ou les prix</li>
+        <li>Publier des mises &agrave; jour pouvant modifier les fonctionnalit&eacute;s de l'Application</li>
+      </ul>
+      <p>Nous ne garantissons pas un fonctionnement ininterrompu ou sans erreur de l'Application.</p>
+
+      <h2>10. Exclusion de Garanties</h2>
+      <p>L'Application est fournie &laquo; en l'&eacute;tat &raquo; et &laquo; selon disponibilit&eacute; &raquo; sans garanties d'aucune sorte, expresses ou implicites. Nous ne garantissons pas que l'Application fonctionnera de mani&egrave;re ininterrompue, s&eacute;curis&eacute;e ou sans erreur.</p>
+
+      <h2>11. Limitation de Responsabilit&eacute;</h2>
+      <p>Dans toute la mesure permise par la loi, le d&eacute;veloppeur ne sera pas responsable des dommages indirects, accessoires, sp&eacute;ciaux, cons&eacute;cutifs ou punitifs, y compris la perte de donn&eacute;es, la perte de b&eacute;n&eacute;fices ou la perte de progression du jeu.</p>
+
+      <h2>12. Indemnisation</h2>
+      <p>Vous acceptez d'indemniser et de d&eacute;gager de toute responsabilit&eacute; le d&eacute;veloppeur contre toute r&eacute;clamation, dommage, perte ou d&eacute;pense r&eacute;sultant de votre violation de ces Conditions ou de votre utilisation de l'Application.</p>
+
+      <h2>13. Droit Applicable</h2>
+      <p>Ces Conditions sont r&eacute;gies et interpr&eacute;t&eacute;es conform&eacute;ment aux lois de la R&eacute;publique de Turquie.</p>
+
+      <h2>14. Modifications de ces Conditions</h2>
+      <p>Nous pouvons mettre &agrave; jour ces Conditions de temps en temps. Les modifications seront publi&eacute;es dans l'Application et la date d'entr&eacute;e en vigueur sera mise &agrave; jour. L'utilisation continue de l'Application apr&egrave;s les modifications constitue l'acceptation des Conditions mises &agrave; jour.</p>
+
+      <h2>15. Nous Contacter</h2>
+      <p>Si vous avez des questions concernant ces Conditions d'Utilisation, veuillez nous contacter &agrave; : <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+
+    <!-- ====== TURKISH ====== -->
+    <div class="policy-card policy-lang" id="lang-tr">
+      <h2>1. Ko&#351;ullar&#305;n Kabul&uuml;</h2>
+      <p>Doodle &amp; Guess'i (&ldquo;Uygulama&rdquo;) indirerek, y&uuml;kleyerek veya kullanarak bu Kullan&#305;m Ko&#351;ullar&#305;na ba&#287;l&#305; olmay&#305; kabul edersiniz. Bu ko&#351;ullar&#305; kabul etmiyorsan&#305;z, l&uuml;tfen Uygulamay&#305; kullanmay&#305;n.</p>
+
+      <h2>2. Hizmet Tan&#305;m&#305;</h2>
+      <p>Doodle &amp; Guess, oyuncular&#305;n ad&#305;m ad&#305;m &ccedil;izim talimatlar&#305;n&#305; takip etti&#287;i ve ne &ccedil;izdiklerini tahmin etti&#287;i iOS i&ccedil;in bir mobil &ccedil;izim bulmaca oyunudur. Uygulama &#351;unlar&#305; i&ccedil;erir:</p>
+      <ul>
+        <li>&Uuml;cretsiz temel oynan&#305;&#351;</li>
+        <li>Uygulama i&ccedil;i sat&#305;n almalar (jeton paketleri, reklam kald&#305;rma, tema paketleri)</li>
+        <li>&Uuml;&ccedil;&uuml;nc&uuml; taraf reklamlar</li>
+      </ul>
+
+      <h2>3. Uygunluk</h2>
+      <p>Uygulamay&#305; kullanmak i&ccedil;in en az 13 ya&#351;&#305;nda olmal&#305;s&#305;n&#305;z. 18 ya&#351;&#305;ndan k&uuml;&ccedil;&uuml;kseniz, ebeveyn veya yasal vasinizin bu Ko&#351;ullar&#305; sizin ad&#305;n&#305;za inceledi&#287;ini ve kabul etti&#287;ini beyan edersiniz.</p>
+
+      <h2>4. Kullan&#305;c&#305; Davran&#305;&#351;&#305;</h2>
+      <p>A&#351;a&#287;&#305;dakileri yapmamay&#305; kabul edersiniz:</p>
+      <ul>
+        <li>Uygulamay&#305; tersine m&uuml;hendislik yapmak, kaynak koduna d&ouml;n&uuml;&#351;t&uuml;rmek veya par&ccedil;alara ay&#305;rmak</li>
+        <li>Uygulamay&#305; de&#287;i&#351;tirmek, uyarlamak veya t&uuml;retilmi&#351; eserler olu&#351;turmak</li>
+        <li>Uygulamay&#305; yasa d&#305;&#351;&#305; veya yetkisiz ama&ccedil;larla kullanmak</li>
+        <li>Uygulaman&#305;n sistemlerine veya a&#287;lar&#305;na yetkisiz eri&#351;im sa&#287;lamaya &ccedil;al&#305;&#351;mak</li>
+        <li>Hile, exploit, otomasyon yaz&#305;l&#305;m&#305; veya yetkisiz &uuml;&ccedil;&uuml;nc&uuml; taraf ara&ccedil;lar&#305; kullanmak</li>
+        <li>Uygulaman&#305;n b&uuml;t&uuml;nl&uuml;&#287;&uuml;n&uuml; veya performans&#305;n&#305; bozmak veya engellemek</li>
+      </ul>
+
+      <h2>5. Fikri M&uuml;lkiyet</h2>
+      <p>Uygulamadaki t&uuml;m i&ccedil;erikler; grafikler, g&ouml;rseller, metinler, sesler, oyun verileri, Core ML modeli ve yaz&#305;l&#305;m kodu dahil ancak bunlarla s&#305;n&#305;rl&#305; olmamak &uuml;zere, geli&#351;tiricinin m&uuml;lkiyetindedir ve telif hakk&#305; ile fikri m&uuml;lkiyet yasalar&#305; taraf&#305;ndan korunmaktad&#305;r. &Ouml;nceden yaz&#305;l&#305; izin almadan Uygulamadaki hi&ccedil;bir i&ccedil;eri&#287;i kopyalayamaz, da&#287;&#305;tamaz veya &ccedil;o&#287;altamazs&#305;n&#305;z.</p>
+
+      <h2>6. Uygulama &#304;&ccedil;i Sat&#305;n Almalar</h2>
+      <p>Uygulama, Apple App Store arac&#305;l&#305;&#287;&#305;yla uygulama i&ccedil;i sat&#305;n almalar sunar. Sat&#305;n alma yaparak Apple'&#305;n hizmet ko&#351;ullar&#305;n&#305; kabul edersiniz. T&uuml;m sat&#305;n almalar Apple taraf&#305;ndan i&#351;lenir ve Apple'&#305;n iade politikalar&#305;na tabidir.</p>
+      <ul>
+        <li><strong>T&uuml;ketilebilir &ouml;&#287;eler</strong> (jeton paketleri) Uygulama i&ccedil;inde kullan&#305;l&#305;r ve t&uuml;ketildikten sonra geri y&uuml;klenemez</li>
+        <li><strong>T&uuml;ketilemez &ouml;&#287;eler</strong> (reklam kald&#305;rma, tema paketleri) ayn&#305; Apple ID ile geri y&uuml;klenebilir</li>
+        <li>Fiyatlar yerel para biriminizde g&ouml;sterilir ve b&ouml;lgeye g&ouml;re de&#287;i&#351;ebilir</li>
+        <li>Hesab&#305;n&#305;z &uuml;zerinden yap&#305;lan t&uuml;m &ouml;demelerden siz sorumlusunuz</li>
+      </ul>
+
+      <h2>7. Sanal Para Birimi</h2>
+      <p>Uygulama, oyun i&ccedil;i para birimi olarak sanal jetonlar kullan&#305;r. Sanal jetonlar:</p>
+      <ul>
+        <li>Ger&ccedil;ek d&uuml;nyada parasal de&#287;eri yoktur</li>
+        <li>Ger&ccedil;ek paraya d&ouml;n&uuml;&#351;t&uuml;r&uuml;lemez, transfer edilemez veya takas edilemez</li>
+        <li>Oyun oynayarak kazan&#305;labilir veya uygulama i&ccedil;i sat&#305;n almalarla edinilebilir</li>
+        <li>&#304;pu&ccedil;lar&#305; ve di&#287;er oyun i&ccedil;i &ouml;&#287;eleri sat&#305;n almak i&ccedil;in kullan&#305;labilir</li>
+        <li>Cihaz&#305;n&#305;zda yerel olarak saklan&#305;r ve Uygulama silinirse kaybolabilir</li>
+      </ul>
+
+      <h2>8. Reklamlar</h2>
+      <p>Uygulama &uuml;&ccedil;&uuml;nc&uuml; taraf reklamlar g&ouml;sterir. Reklam i&ccedil;eri&#287;i &uuml;&ccedil;&uuml;nc&uuml; taraf reklam a&#287;lar&#305; taraf&#305;ndan sa&#287;lan&#305;r ve bu reklamlar&#305;n i&ccedil;eri&#287;inden veya do&#287;rulu&#287;undan sorumlu de&#287;iliz. Uygulama i&ccedil;i sat&#305;n alma yoluyla reklamlar&#305; kald&#305;rabilirsiniz.</p>
+
+      <h2>9. Kullan&#305;labilirlik ve G&uuml;ncellemeler</h2>
+      <p>A&#351;a&#287;&#305;daki haklar&#305; sakl&#305; tutuyoruz:</p>
+      <ul>
+        <li>Uygulamay&#305; herhangi bir zamanda &ouml;nceden bildirimde bulunmadan de&#287;i&#351;tirmek, g&uuml;ncellemek veya durdurmak</li>
+        <li>Oyun i&ccedil;eri&#287;ini, &ouml;zelliklerini veya fiyatland&#305;rmay&#305; de&#287;i&#351;tirmek</li>
+        <li>Uygulaman&#305;n i&#351;levselli&#287;ini de&#287;i&#351;tirebilecek g&uuml;ncellemeler yay&#305;nlamak</li>
+      </ul>
+      <p>Uygulaman&#305;n kesintisiz veya hatas&#305;z &ccedil;al&#305;&#351;aca&#287;&#305;n&#305; garanti etmiyoruz.</p>
+
+      <h2>10. Garanti Reddi</h2>
+      <p>Uygulama, a&ccedil;&#305;k veya z&#305;mni hi&ccedil;bir garanti olmaks&#305;z&#305;n &ldquo;oldu&#287;u gibi&rdquo; ve &ldquo;mevcut oldu&#287;u &#351;ekliyle&rdquo; sunulmaktad&#305;r. Uygulaman&#305;n kesintisiz, g&uuml;venli veya hatas&#305;z &ccedil;al&#305;&#351;aca&#287;&#305;n&#305; garanti etmiyoruz.</p>
+
+      <h2>11. Sorumluluk S&#305;n&#305;rlamas&#305;</h2>
+      <p>Yasalar&#305;n izin verdi&#287;i azami &ouml;l&ccedil;&uuml;de, geli&#351;tirici; veri kayb&#305;, kar kayb&#305; veya oyun ilerlemesi kayb&#305; dahil olmak &uuml;zere dolayl&#305;, tesad&uuml;fi, &ouml;zel, sonu&ccedil;sal veya cezai zararlardan sorumlu olmayacakt&#305;r.</p>
+
+      <h2>12. Tazminat</h2>
+      <p>Bu Ko&#351;ullar&#305; ihlal etmenizden veya Uygulamay&#305; kullanman&#305;zdan kaynaklanan t&uuml;m talep, zarar, kay&#305;p veya masraflara kar&#351;&#305; geli&#351;tiriciyi tazmin etmeyi ve sorumsuz tutmay&#305; kabul edersiniz.</p>
+
+      <h2>13. Uygulanacak Hukuk</h2>
+      <p>Bu Ko&#351;ullar, T&uuml;rkiye Cumhuriyeti yasalar&#305;na g&ouml;re y&ouml;netilecek ve yorumlanacakt&#305;r.</p>
+
+      <h2>14. Bu Ko&#351;ullardaki De&#287;i&#351;iklikler</h2>
+      <p>Bu Ko&#351;ullar&#305; zaman zaman g&uuml;ncelleyebiliriz. De&#287;i&#351;iklikler Uygulama i&ccedil;inde yay&#305;nlanacak ve y&uuml;r&uuml;rl&uuml;k tarihi g&uuml;ncellenecektir. De&#287;i&#351;ikliklerden sonra Uygulamay&#305; kullanmaya devam etmeniz, g&uuml;ncellenen Ko&#351;ullar&#305; kabul etti&#287;iniz anlam&#305;na gelir.</p>
+
+      <h2>15. Bize Ula&#351;&#305;n</h2>
+      <p>Bu Kullan&#305;m Ko&#351;ullar&#305; hakk&#305;nda sorular&#305;n&#305;z varsa, l&uuml;tfen bize ula&#351;&#305;n: <a href="mailto:support@doodleandguess.com">support@doodleandguess.com</a></p>
+    </div>
+  </main>
+
+  <footer class="footer">
+    <div class="footer-links">
+      <a href="index.html">Home</a>
+      <a href="privacy.html">Privacy Policy</a>
+      <a href="terms.html">Terms of Use</a>
+      <a href="mailto:support@doodleandguess.com">Support</a>
+    </div>
+    <p class="footer-copy">&copy; 2025 Doodle &amp; Guess. All rights reserved.</p>
+  </footer>
+
+  <script>
+    document.querySelectorAll('.lang-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+        e.preventDefault();
+        const lang = btn.dataset.lang;
+        document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        document.querySelectorAll('.policy-lang').forEach(p => p.classList.remove('active'));
+        document.getElementById('lang-' + lang).classList.add('active');
+        document.querySelector('.policy-card.active').scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+
+</body>
+</html>
